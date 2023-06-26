@@ -13,9 +13,6 @@ export default function DeliveryAddress() {
         <InputComponent label="State" placeholder="Enter state" />
         <InputComponent label="Country" placeholder="Enter country" />
       </Flex>
-      <Button variant="solid" colorScheme="green">
-        Add Address
-      </Button>
     </Flex>
   );
 }

@@ -8,8 +8,8 @@ export default function CartList() {
       w={{ lg: "70%", md: "100%", base: "100%" }}
       align="start"
       direction="column"
-      maxHeight="500px"
-      overflow="scroll"
+      maxHeight={{ lg: "700px", md: "100%", base: "100%" }}
+      overflow={{ lg: "scroll" }}
     >
       {data.map((item: any, i: number) => (
         <CartItem key={i} />

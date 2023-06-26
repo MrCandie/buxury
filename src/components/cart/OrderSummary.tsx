@@ -14,8 +14,8 @@ export default function OrderSummary() {
       right="0"
       p="1rem"
       border="1px solid #ccc"
-      maxHeight="450px"
-      overflow="scroll"
+      maxHeight={{ lg: "700px", md: "100%", base: "100%" }}
+      overflow={{ lg: "scroll" }}
     >
       <Heading size="md">Order Summary</Heading>
       <Divider />

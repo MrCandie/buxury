@@ -25,7 +25,7 @@ export default function CartItem() {
           Naked Wolfe Sneakers
         </Heading>
         <Flex align="center" w="100%" justify="space-between">
-          <Text fontSize="24px">$120</Text>
+          <Text fontSize={{ lg: "24px", md: "20px", base: "16px" }}>$120</Text>
           <s>$150</s>
         </Flex>
         <Flex align="center" w="100%" justify="space-between">

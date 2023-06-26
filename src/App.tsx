@@ -26,8 +26,7 @@ function App() {
   return (
     <BrowserRouter>
       <RefineKbarProvider>
-        {/* You can change the theme colors here. example: theme={RefineThemes.Magenta} */}
-        <ChakraProvider theme={RefineThemes.Blue}>
+        <ChakraProvider>
           <Refine
             notificationProvider={notificationProvider}
             routerProvider={routerBindings}
@@ -49,31 +48,17 @@ function App() {
                 list: "/cart",
               },
               {
-                name: "checkout",
-                list: "/checkout",
+                name: "History",
+                list: "/history",
               },
               {
-                name: "checkout",
-                list: "/checkout",
-              },
-              {
-                name: "payment",
-                list: "/paymemt",
-              },
-              {
-                name: "success",
-                list: "/success",
+                name: "admin",
+                list: "/admin",
               },
             ]}
           >
             <Routes>
-              <Route
-                element={
-                  <ThemedLayoutV2>
-                    <Outlet />
-                  </ThemedLayoutV2>
-                }
-              >
+              <Route>
                 <Route
                   index
                   element={<NavigateToResource resource="products" />}

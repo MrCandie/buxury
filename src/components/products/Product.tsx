@@ -2,15 +2,16 @@ import { Button, Flex, Heading, useDisclosure } from "@chakra-ui/react";
 import ProductList from "./ProductList";
 import { MdAdd } from "react-icons/md";
 import CreateProduct from "./CreateProduct";
+import Wrapper from "components/ui/Wrapper";
 
 export default function Product() {
   const data = [1, 1, 1, 1, 1, 1, 1, 1, 1];
   const { isOpen, onClose, onOpen } = useDisclosure();
   return (
-    <>
-      <Flex w="100%" align="start" direction="column" gap="1rem">
-        <Flex align="center" justify="space-between" w="100%">
-          <Heading size={{ lg: "lg", md: "md", base: "md" }}>
+    <Wrapper>
+      <Flex py="1rem" w="100%" align="start" direction="column" gap="1rem">
+        <Flex px="1rem" align="center" justify="space-between" w="100%">
+          <Heading size={{ lg: "md", md: "sm", base: "sm" }}>
             All Products
           </Heading>
           <Button
@@ -26,6 +27,6 @@ export default function Product() {
         <ProductList data={data} />
       </Flex>
       <CreateProduct isOpen={isOpen} onClose={onClose} />
-    </>
+    </Wrapper>
   );
 }
