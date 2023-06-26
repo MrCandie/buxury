@@ -1,0 +1,80 @@
+[debug] [2023-06-26T06:17:30.642Z] ----------------------------------------------------------------------
+[debug] [2023-06-26T06:17:30.650Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Candie\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2023-06-26T06:17:30.652Z] CLI Version:   11.25.2
+[debug] [2023-06-26T06:17:30.653Z] Platform:      win32
+[debug] [2023-06-26T06:17:30.654Z] Node Version:  v18.16.0
+[debug] [2023-06-26T06:17:30.657Z] Time:          Mon Jun 26 2023 07:17:30 GMT+0100 (West Africa Standard Time)
+[debug] [2023-06-26T06:17:30.658Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-06-26T06:17:31.010Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-06-26T06:17:31.012Z] > authorizing via signed-in user (akinwumiadekanmi2@gmail.com)
+[debug] [2023-06-26T06:17:31.013Z] [iam] checking project bookie-82a0f for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-06-26T06:17:31.021Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/bookie-82a0f:testIamPermissions [none]
+[debug] [2023-06-26T06:17:31.022Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/bookie-82a0f:testIamPermissions x-goog-quota-user=projects/bookie-82a0f
+[debug] [2023-06-26T06:17:31.023Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bookie-82a0f:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-06-26T06:17:32.695Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/bookie-82a0f:testIamPermissions 200
+[debug] [2023-06-26T06:17:32.696Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bookie-82a0f:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-06-26T06:17:32.699Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/bookie-82a0f [none]
+[debug] [2023-06-26T06:17:33.274Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/bookie-82a0f 200
+[debug] [2023-06-26T06:17:33.275Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/bookie-82a0f {"projectId":"bookie-82a0f","projectNumber":"760886038957","displayName":"Bookie","name":"projects/bookie-82a0f","resources":{"hostingSite":"bookie-82a0f"},"state":"ACTIVE","etag":"1_2d97f47d-0eda-4074-bb38-0ba3a83681f0"}
+[info] 
+[info] === Deploying to 'bookie-82a0f'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2023-06-26T06:17:33.290Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bookie-82a0f/versions [none]
+[debug] [2023-06-26T06:17:33.290Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bookie-82a0f/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2023-06-26T06:17:34.754Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bookie-82a0f/versions 200
+[debug] [2023-06-26T06:17:34.754Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bookie-82a0f/versions {"name":"projects/760886038957/sites/bookie-82a0f/versions/84b27abfa7206b43","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[bookie-82a0f]: beginning deploy... 
+[info] i  hosting[bookie-82a0f]: found 9 files in build 
+[debug] [2023-06-26T06:17:34.775Z] [hosting] uploading with 200 concurrency
+[debug] [2023-06-26T06:17:39.481Z] [hosting] hash cache [YnVpbGQ] stored for 9 files
+[debug] [2023-06-26T06:17:39.481Z] [hosting][hash queue][FINAL] {"max":4679,"min":3,"avg":579.3333333333334,"active":0,"complete":9,"success":9,"errored":0,"retried":0,"total":9,"elapsed":4688}
+[debug] [2023-06-26T06:17:39.483Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/760886038957/sites/bookie-82a0f/versions/84b27abfa7206b43:populateFiles [none]
+[debug] [2023-06-26T06:17:39.483Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/760886038957/sites/bookie-82a0f/versions/84b27abfa7206b43:populateFiles {"files":{"/favicon.ico":"3e3449fe1696d8cdd13aeaad96cdc38070f7b9d792b2158d119208eeceb31023","/sneakers.jpeg":"291203a494e50bbced186ef6fb9abf1df244228612a9730f112be9218a1d824e","/asset-manifest.json":"e5637cd579eedfb32713abf1e18d059c8bd30abbffad75f7f6d4fef0d4dec5ac","/index.html":"7d65100efa48339b12d3b32978c501dd5dc8b872224531cd9909e1d9a26ca6e4","/static/css/main.a878ce39.css":"b5e81dd3cd0cd4735efab7263d51ed4eaeff105ff5b36dd4ea03109cf1fa031f","/static/css/main.a878ce39.css.map":"1d99a0ef1484a0419a7b0f1be9975ab6dd51b364ddf40eb3af67bddc7377cea6","/static/js/main.abeee70a.js.LICENSE.txt":"c5f3b866662e9444d28fa31685804aa11a3fd1861127b6e3299b6443da66a68d","/static/js/main.abeee70a.js":"8fbff7dd949133dff5ab17d14dde1b4133d14de9c09d3c62daeb03eeaad367af","/static/js/main.abeee70a.js.map":"7accbee06dc10e39177de6e2bc978480eb2e80fde69d50a67afd6eb72c905243"}}
+[debug] [2023-06-26T06:17:40.600Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/760886038957/sites/bookie-82a0f/versions/84b27abfa7206b43:populateFiles 200
+[debug] [2023-06-26T06:17:40.600Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/760886038957/sites/bookie-82a0f/versions/84b27abfa7206b43:populateFiles {"uploadRequiredHashes":["7accbee06dc10e39177de6e2bc978480eb2e80fde69d50a67afd6eb72c905243","e5637cd579eedfb32713abf1e18d059c8bd30abbffad75f7f6d4fef0d4dec5ac","7d65100efa48339b12d3b32978c501dd5dc8b872224531cd9909e1d9a26ca6e4","8fbff7dd949133dff5ab17d14dde1b4133d14de9c09d3c62daeb03eeaad367af"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/bookie-82a0f/versions/84b27abfa7206b43/files"}
+[debug] [2023-06-26T06:17:40.603Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/bookie-82a0f/versions/84b27abfa7206b43/files/7accbee06dc10e39177de6e2bc978480eb2e80fde69d50a67afd6eb72c905243 [none]
+[debug] [2023-06-26T06:17:40.603Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bookie-82a0f/versions/84b27abfa7206b43/files/7accbee06dc10e39177de6e2bc978480eb2e80fde69d50a67afd6eb72c905243 [stream]
+[debug] [2023-06-26T06:17:40.608Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/bookie-82a0f/versions/84b27abfa7206b43/files/e5637cd579eedfb32713abf1e18d059c8bd30abbffad75f7f6d4fef0d4dec5ac [none]
+[debug] [2023-06-26T06:17:40.608Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bookie-82a0f/versions/84b27abfa7206b43/files/e5637cd579eedfb32713abf1e18d059c8bd30abbffad75f7f6d4fef0d4dec5ac [stream]
+[debug] [2023-06-26T06:17:40.611Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/bookie-82a0f/versions/84b27abfa7206b43/files/7d65100efa48339b12d3b32978c501dd5dc8b872224531cd9909e1d9a26ca6e4 [none]
+[debug] [2023-06-26T06:17:40.611Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bookie-82a0f/versions/84b27abfa7206b43/files/7d65100efa48339b12d3b32978c501dd5dc8b872224531cd9909e1d9a26ca6e4 [stream]
+[debug] [2023-06-26T06:17:40.614Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/bookie-82a0f/versions/84b27abfa7206b43/files/8fbff7dd949133dff5ab17d14dde1b4133d14de9c09d3c62daeb03eeaad367af [none]
+[debug] [2023-06-26T06:17:40.614Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bookie-82a0f/versions/84b27abfa7206b43/files/8fbff7dd949133dff5ab17d14dde1b4133d14de9c09d3c62daeb03eeaad367af [stream]
+[debug] [2023-06-26T06:17:40.617Z] [hosting][populate queue][FINAL] {"max":1126,"min":1126,"avg":1126,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":1140}
+[debug] [2023-06-26T06:17:40.617Z] [hosting] uploads queued: 4
+[debug] [2023-06-26T06:17:42.133Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/bookie-82a0f/versions/84b27abfa7206b43/files/e5637cd579eedfb32713abf1e18d059c8bd30abbffad75f7f6d4fef0d4dec5ac 200
+[debug] [2023-06-26T06:17:42.134Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bookie-82a0f/versions/84b27abfa7206b43/files/e5637cd579eedfb32713abf1e18d059c8bd30abbffad75f7f6d4fef0d4dec5ac [stream]
+[debug] [2023-06-26T06:17:42.313Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/bookie-82a0f/versions/84b27abfa7206b43/files/7d65100efa48339b12d3b32978c501dd5dc8b872224531cd9909e1d9a26ca6e4 200
+[debug] [2023-06-26T06:17:42.314Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bookie-82a0f/versions/84b27abfa7206b43/files/7d65100efa48339b12d3b32978c501dd5dc8b872224531cd9909e1d9a26ca6e4 [stream]
+[debug] [2023-06-26T06:17:43.043Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/bookie-82a0f/versions/84b27abfa7206b43/files/8fbff7dd949133dff5ab17d14dde1b4133d14de9c09d3c62daeb03eeaad367af 200
+[debug] [2023-06-26T06:17:43.043Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bookie-82a0f/versions/84b27abfa7206b43/files/8fbff7dd949133dff5ab17d14dde1b4133d14de9c09d3c62daeb03eeaad367af [stream]
+[debug] [2023-06-26T06:17:48.279Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/bookie-82a0f/versions/84b27abfa7206b43/files/7accbee06dc10e39177de6e2bc978480eb2e80fde69d50a67afd6eb72c905243 200
+[debug] [2023-06-26T06:17:48.280Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bookie-82a0f/versions/84b27abfa7206b43/files/7accbee06dc10e39177de6e2bc978480eb2e80fde69d50a67afd6eb72c905243 [stream]
+[debug] [2023-06-26T06:17:48.280Z] [hosting][upload queue][FINAL] {"max":7680,"min":1532,"avg":3341.25,"active":0,"complete":4,"success":4,"errored":0,"retried":0,"total":4,"elapsed":7680}
+[info] +  hosting[bookie-82a0f]: file upload complete 
+[debug] [2023-06-26T06:17:48.282Z] [hosting] deploy completed after 13524ms
+[debug] [2023-06-26T06:17:48.288Z] [
+  {
+    "config": {
+      "public": "build",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "bookie-82a0f"
+    },
+    "version": "projects/760886038957/sites/bookie-82a0f/versions/84b27abfa7206b43"
+  }
+]
+[info] i  hosting[bookie-82a0f]: finalizing version... 
+[debug] [2023-06-26T06:17:48.294Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bookie-82a0f/versions/84b27abfa7206b43 updateMask=status%2Cconfig
+[debug] [2023-06-26T06:17:48.294Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bookie-82a0f/versions/84b27abfa7206b43 {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]}}
