@@ -1,10 +1,20 @@
-import { Button, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import CartBtn from "components/ui/CartBtn";
+import { useState } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { Rating } from "react-simple-star-rating";
 
 export default function ProductDescription() {
   const navigate = useNavigate();
+  const [rating, setRating] = useState(0);
+
+  const handleRating = (rate: number) => {
+    setRating(rate);
+
+    // other logic
+  };
+
   return (
     <Flex
       align="start"
@@ -23,6 +33,10 @@ export default function ProductDescription() {
           <AiOutlineHeart fontSize={24} color="red" />
         </Button>
       </Flex>
+      <Flex w="100%" align="center" direction="row">
+        <Rating transition={false} size={25} onClick={handleRating} />
+      </Flex>
+
       <Flex
         align="start"
         direction="column"

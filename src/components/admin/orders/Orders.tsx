@@ -1,16 +1,16 @@
 import { Flex } from "@chakra-ui/react";
-import UserTitle from "./UserTitle";
-import UserList from "./UserList";
 import ChartData from "components/ui/ChartData";
 import Filter from "components/ui/Filter";
+import OrderTitle from "./OrderTitle";
+import OrderList from "./OrderList";
 
-export default function Users() {
+export default function Orders() {
   return (
     <Flex w="100%" align="start" direction="column">
       <Filter />
       <ChartData />
-      <UserTitle />
-      <UserList />
+      <OrderTitle />
+      <OrderList />
     </Flex>
   );
 }

@@ -15,14 +15,17 @@
     "@refinedev/react-table": "^5.1.4",
     "@refinedev/simple-rest": "^4.0.0",
     "@tabler/icons": "^1.1.0",
+    "apexcharts": "^3.41.0",
     "mrcandie-react-preview": "^0.1.0",
     "react": "^18.0.0",
+    "react-apexcharts": "^1.4.0",
     "react-dom": "^18.0.0",
     "react-hook-form": "^7.30.0",
     "react-icons": "^4.10.1",
     "react-image-gallery": "^1.2.12",
     "react-router-dom": "^6.8.1",
-    "react-scripts": "^5.0.0"
+    "react-scripts": "^5.0.0",
+    "react-simple-star-rating": "^5.1.7"
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",

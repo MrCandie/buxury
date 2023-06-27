@@ -7,6 +7,7 @@ import {
   TabPanel,
 } from "@chakra-ui/react";
 import Users from "./users/Users";
+import Orders from "./orders/Orders";
 
 export default function AdminCenter() {
   return (
@@ -18,9 +19,15 @@ export default function AdminCenter() {
     >
       <Tabs colorScheme="blue" w="100%">
         <TabList>
-          <Tab color="blue.500">Users</Tab>
-          <Tab color="blue.500">Order</Tab>
-          <Tab color="blue.500">Statistics</Tab>
+          <Tab fontSize={{ lg: 24, md: 20, base: 8 }} color="blue.500">
+            Users
+          </Tab>
+          <Tab fontSize={{ lg: 24, md: 20, base: 8 }} color="blue.500">
+            Order
+          </Tab>
+          <Tab fontSize={{ lg: 24, md: 20, base: 8 }} color="blue.500">
+            Statistics
+          </Tab>
         </TabList>
 
         <TabPanels>
@@ -28,7 +35,7 @@ export default function AdminCenter() {
             <Users />
           </TabPanel>
           <TabPanel>
-            <p>two!</p>
+            <Orders />
           </TabPanel>
           <TabPanel>
             <p>two!</p>

@@ -22,8 +22,8 @@
 
 .image-gallery-thumbnail .image-gallery-thumbnail-image {
   height: 100px;
+  width: 100%;
 }
-
 .image-gallery-content .image-gallery-slide .image-gallery-image {
   height: 400px;
   /* width: 100%; */
@@ -99,9 +99,19 @@
   }
 }
 
-@media (max-width: 768px) {
+.rating {
+  display: flex;
+  align-items: center;
+}
+
+/* @media (max-width: 768px) {
   .image-gallery-thumbnail.active,
   .image-gallery-thumbnail:focus {
     width: fit;
   }
+} */
+
+.react-simple-star-rating span {
+  display: flex;
+  align-items: center;
 }

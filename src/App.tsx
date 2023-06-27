@@ -31,6 +31,7 @@ import ConfirmSignup from "components/auth/ConfirmSignup";
 import History from "components/history/History";
 import Admin from "components/admin/Admin";
 import UserDetail from "components/admin/users/userdetails/UserDetail";
+import OrderDetail from "components/admin/orders/order-detail/OrderDetail";
 
 function App() {
   return (
@@ -97,6 +98,7 @@ function App() {
                 <Route path="admin">
                   <Route index element={<Admin />} />
                   <Route path="user/:id" element={<UserDetail />} />
+                  <Route path="orders/:id" element={<OrderDetail />} />
                 </Route>
                 <Route path="*" element={<ErrorComponent />} />
               </Route>

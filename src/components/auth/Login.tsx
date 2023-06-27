@@ -64,7 +64,7 @@ export default function Login() {
         >
           New here?{" "}
           <Link style={{ fontWeight: 500 }} to="/auth/register">
-            Login
+            Sign Up
           </Link>
         </Text>
       </Flex>
