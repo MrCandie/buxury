@@ -1,3 +1,5 @@
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
 ::-webkit-scrollbar {
   width: 2px;
   height: 0px;
@@ -16,4 +18,90 @@
 }
 ::-webkit-scrollbar-track {
   margin: 20rem 0;
+}
+
+.image-gallery-thumbnail .image-gallery-thumbnail-image {
+  height: 100px;
+}
+
+.image-gallery-content .image-gallery-slide .image-gallery-image {
+  height: 400px;
+  /* width: 100%; */
+}
+.menu {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  font-size: 15px;
+  text-transform: capitalize;
+  font-weight: medium;
+  color: #333;
+  border-left: 5px solid #fff;
+}
+
+.active {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  font-size: 16px;
+  text-transform: capitalize;
+  font-weight: medium;
+  color: "#333";
+  border-left: 5px solid #ccc;
+  background-color: rgba(211, 211, 211, 0.1);
+}
+
+.overlay-modal {
+  position: absolute;
+  top: 10vh;
+  left: 1%;
+  width: 98%;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 60;
+  max-height: 80vh;
+  animation: slide-down 300ms ease-out forwards;
+  overflow: scroll;
+}
+
+.overlay-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+}
+
+@media (min-width: 768px) {
+  .overlay-modal {
+    width: 40rem;
+    left: calc(50% - 20rem);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .image-gallery-thumbnail.active,
+  .image-gallery-thumbnail:focus {
+    width: fit;
+  }
 }

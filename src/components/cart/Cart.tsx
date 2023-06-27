@@ -14,7 +14,7 @@ export default function Cart() {
         direction="column"
         gap="1rem"
       >
-        <Heading size={{ base: "md", md: "md", lg: "lg" }}>
+        <Heading color="#333" size={{ base: "md", md: "md", lg: "lg" }}>
           Shopping Cart
         </Heading>
         <Divider />

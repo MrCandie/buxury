@@ -10,12 +10,15 @@ export default function ProductDescription() {
       align="start"
       direction="column"
       gap="1rem"
+      bg="white"
       px="1rem"
       height={{ lg: "500px", md: "500px", base: "100%" }}
       w={{ lg: "50%", md: "50%", base: "100%" }}
     >
-      <Flex align="center" justify="space-between" w="100%">
-        <Heading size="lg">Naked wolfe sneakers</Heading>
+      <Flex bg="white" align="center" justify="space-between" w="100%">
+        <Heading color="#333" size="lg">
+          Naked wolfe sneakers
+        </Heading>
         <Button variant="ghost">
           <AiOutlineHeart fontSize={24} color="red" />
         </Button>
@@ -25,8 +28,14 @@ export default function ProductDescription() {
         direction="column"
         maxHeight={{ lg: "300px", md: "300px", base: "100%" }}
         overflow="scroll"
+        bg="white"
       >
-        <Text fontSize="15px" fontWeight="normal" textTransform="capitalize">
+        <Text
+          color="#333"
+          fontSize="15px"
+          fontWeight="normal"
+          textTransform="capitalize"
+        >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -35,7 +44,12 @@ export default function ProductDescription() {
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </Text>
-        <Text fontSize="15px" fontWeight="normal" textTransform="capitalize">
+        <Text
+          color="#333"
+          fontSize="15px"
+          fontWeight="normal"
+          textTransform="capitalize"
+        >
           Sed ut perspiciatis unde omnis iste natus error sit voluptatem
           accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
           ab illo inventore veritatis et quasi architecto beatae vitae dicta

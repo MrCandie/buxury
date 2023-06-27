@@ -17,13 +17,12 @@ import { useState } from "react";
 
 export default function CreateProduct({ isOpen, onClose }: any) {
   const [images, setImages]: any = useState([]);
-  console.log(images);
 
   return (
     <Modal size="2xl" isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Create new product</ModalHeader>
+      <ModalContent bg="white">
+        <ModalHeader color="#fff">Create new product</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <Flex align="start" direction="column" w="100%" gap="1rem" py="1rem">

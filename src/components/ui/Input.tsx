@@ -25,6 +25,7 @@ export default function InputComponent({
       </FormLabel>
       <Input
         id={id}
+        color="#000"
         readOnly={readOnly ? readOnly : false}
         type={type}
         value={value}
@@ -32,6 +33,7 @@ export default function InputComponent({
         placeholder={placeholder}
         focusBorderColor="brand.900"
         border={border ? border : "1px solid #ccc"}
+        _placeholder={{ color: "gray.500" }}
         p={p ? p : ""}
         multiple={multiple}
       />

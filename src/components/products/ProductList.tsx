@@ -10,6 +10,7 @@ export default function ProductList({ data }: any) {
       w="100%"
       gap="1rem"
       wrap="wrap"
+      p={{ lg: "2rem", md: "1rem", base: "0rem" }}
     >
       {data.map((item: any, i: number) => (
         <ProductItem key={i} />

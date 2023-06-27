@@ -17,11 +17,17 @@ export default function OrderSummary() {
       maxHeight={{ lg: "700px", md: "100%", base: "100%" }}
       overflow={{ lg: "scroll" }}
     >
-      <Heading size="md">Order Summary</Heading>
+      <Heading color="#333" size="md">
+        Order Summary
+      </Heading>
       <Divider />
       <Flex w="100%" align="center" justify="space-between">
-        <Heading size="sm">SubTotal</Heading>
-        <Heading size="sm">$1,200</Heading>
+        <Heading color="#333" size="sm">
+          SubTotal
+        </Heading>
+        <Heading color="#333" size="sm">
+          $1,200
+        </Heading>
       </Flex>
       <Flex w="100%" my="2rem" align="start" direction="column" gap="1rem">
         <InputComponent
@@ -29,14 +35,18 @@ export default function OrderSummary() {
           placeholder="Apply coupon code here"
         />
         <Flex align="center" w="100%">
-          <Button colorScheme="blue" variant="solid">
+          <Button w="100%" colorScheme="blue" variant="solid">
             Apply
           </Button>
         </Flex>
       </Flex>
       <Flex w="100%" align="center" justify="space-between">
-        <Heading size="sm">Total</Heading>
-        <Heading size="sm">$1,200</Heading>
+        <Heading color="#333" size="sm">
+          Total
+        </Heading>
+        <Heading color="#333" size="sm">
+          $1,200
+        </Heading>
       </Flex>
       <Divider />
       <DeliveryAddress />

@@ -11,7 +11,7 @@ export default function Product() {
     <Wrapper>
       <Flex py="1rem" w="100%" align="start" direction="column" gap="1rem">
         <Flex px="1rem" align="center" justify="space-between" w="100%">
-          <Heading size={{ lg: "md", md: "sm", base: "sm" }}>
+          <Heading color="#333" size={{ lg: "md", md: "sm", base: "sm" }}>
             All Products
           </Heading>
           <Button

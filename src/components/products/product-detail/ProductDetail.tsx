@@ -10,6 +10,8 @@ export default function ProductDetail() {
       align="start"
       direction="column"
       gap="3rem"
+      bg="white"
+      color="#333"
     >
       <ProductBody />
       <Divider />

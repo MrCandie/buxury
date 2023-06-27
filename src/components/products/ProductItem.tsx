@@ -19,11 +19,11 @@ import { useNavigate } from "react-router-dom";
 export default function ProductItem() {
   const navigate = useNavigate();
   return (
-    <Card>
+    <Card bg="white" color="#333">
       <CardHeader>
         <Flex w="100%" align="center" justify="space-between">
-          <Badge>Available</Badge>
-          <Radio colorScheme="teal" value="1" />
+          <Badge color="#333">Available</Badge>
+          <Radio colorScheme="gray" value="1" />
         </Flex>
       </CardHeader>
 
@@ -53,8 +53,10 @@ export default function ProductItem() {
       </CardBody>
       <CardFooter>
         <Flex align="center" w="100%" justify="space-between">
-          <Button leftIcon={<AiOutlineShoppingCart />}>Add to cart</Button>
-          <Button variant="ghost">
+          <Button colorScheme="blue" leftIcon={<AiOutlineShoppingCart />}>
+            Add to cart
+          </Button>
+          <Button variant="ghost" colorScheme="red">
             <AiOutlineHeart />
           </Button>
         </Flex>

@@ -10,6 +10,8 @@ export default function Wrapper({ children }: any) {
         align="start"
         w={{ lg: "80%", md: "100%", base: "100%" }}
         direction="column"
+        maxHeight="100vh"
+        overflow="scroll"
       >
         <Header />
         {children}

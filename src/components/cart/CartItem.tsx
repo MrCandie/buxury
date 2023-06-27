@@ -11,6 +11,8 @@ export default function CartItem() {
       borderBottom="1px solid #ccc"
       gap="1rem"
       w="100%"
+      bg="white"
+      color="#333"
     >
       <Box w="30%">
         <ImageComponent
