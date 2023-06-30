@@ -1,7 +1,10 @@
 import { Avatar, Box, Flex, Heading, Text } from "@chakra-ui/react";
+import { useContext } from "react";
 import { AiFillEdit } from "react-icons/ai";
+import { AuthContext } from "util/context";
 
 export default function User({ show }: any) {
+  const { user }: any = useContext(AuthContext);
   return (
     <Flex
       style={{
@@ -32,7 +35,7 @@ export default function User({ show }: any) {
           justify="center"
           w={{ lg: "30%", md: "100%", base: "100%" }}
         >
-          <Avatar name="buxury" size="2xl" />
+          <Avatar name={user?.name} size="2xl" />
         </Flex>
 
         <Flex
@@ -52,7 +55,7 @@ export default function User({ show }: any) {
               Name
             </Heading>
             <Text fontSize="16px" fontWeight={500} color="#333">
-              John Doe
+              {user?.name}
             </Text>
           </Flex>
 
@@ -67,7 +70,7 @@ export default function User({ show }: any) {
               Email
             </Heading>
             <Text fontSize="16px" fontWeight={500} color="#333">
-              johndoe@gmail.com
+              {user?.email}
             </Text>
           </Flex>
 
@@ -82,7 +85,7 @@ export default function User({ show }: any) {
               Phone Number
             </Heading>
             <Text fontSize="16px" fontWeight={500} color="#333">
-              090876543345
+              {user?.phone}
             </Text>
           </Flex>
 
@@ -97,7 +100,7 @@ export default function User({ show }: any) {
               Address
             </Heading>
             <Text fontSize="16px" fontWeight={500} color="#333">
-              No 22, doe street ikeja lagos
+              {user?.address}
             </Text>
           </Flex>
         </Flex>

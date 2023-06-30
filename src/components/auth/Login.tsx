@@ -48,9 +48,17 @@ export default function Login() {
       setLoading(false);
       setProgress(80);
       setProgress(100);
-    } catch (error) {
+    } catch (error: any) {
       setLoading(false);
       setProgress(100);
+      toast({
+        title: `${error?.response?.data?.message || "something went wrong"}`,
+        description: "",
+        status: "error",
+        duration: 3000,
+        position: "top-right",
+        isClosable: true,
+      });
     }
   }
 

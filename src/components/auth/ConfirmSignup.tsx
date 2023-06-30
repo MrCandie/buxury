@@ -15,7 +15,8 @@ import Loader from "components/ui/Loader";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "util/context";
-import { verifyOtp } from "util/http";
+import { resendOtp, verifyOtp } from "util/http";
+import { getStoredItem } from "util/lib";
 
 export default function ConfirmSignup() {
   const navigate = useNavigate();
@@ -30,6 +31,8 @@ export default function ConfirmSignup() {
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [countDown, setCountdown]: any = useState(60);
+
+  const email = getStoredItem("reset-email");
 
   const token = `${pin1}${pin2}${pin3}${pin4}`;
 
@@ -55,7 +58,37 @@ export default function ConfirmSignup() {
     }
   }, [pin1, pin2, pin3, pin4]);
 
-  async function resendToken() {}
+  async function resendToken() {
+    try {
+      setLoading(true);
+      setProgress(20);
+      setProgress(40);
+      setProgress(60);
+      await resendOtp({ email });
+      setProgress(80);
+      setProgress(100);
+      toast({
+        title: "Verification token resent",
+        description: "",
+        status: "success",
+        duration: 3000,
+        position: "top-right",
+        isClosable: true,
+      });
+
+      navigate("/");
+    } catch (error: any) {
+      setProgress(100);
+      toast({
+        title: `${error?.response?.data?.message || "something went wrong"}`,
+        description: "",
+        status: "error",
+        duration: 3000,
+        position: "top-right",
+        isClosable: true,
+      });
+    }
+  }
 
   async function confirmHandler() {
     if (!token) {
@@ -79,6 +112,7 @@ export default function ConfirmSignup() {
       setProgress(40);
       setProgress(60);
       await verifyOtp({ token, userId: user?.id });
+      setCountdown(120);
       setProgress(80);
       setProgress(100);
       toast({
@@ -91,7 +125,6 @@ export default function ConfirmSignup() {
       });
 
       setLoading(false);
-      navigate("/");
     } catch (error: any) {
       setProgress(100);
       setLoading(false);

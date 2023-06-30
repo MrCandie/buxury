@@ -2,10 +2,13 @@ import { Avatar, Box, Flex, useDisclosure } from "@chakra-ui/react";
 import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai";
 import SideMenu from "./SideMenu";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "util/context";
 
 export default function Header() {
   const { isOpen, onClose, onOpen } = useDisclosure();
   const navigate = useNavigate();
+  const { user }: any = useContext(AuthContext);
   return (
     <>
       <Flex
@@ -34,8 +37,7 @@ export default function Header() {
             <Avatar
               onClick={() => navigate("/profile")}
               cursor="pointer"
-              name="buxury"
-              src=""
+              name={user?.name}
             />
           </Flex>
         </Flex>

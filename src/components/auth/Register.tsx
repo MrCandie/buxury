@@ -69,6 +69,7 @@ export default function Register() {
       const response = await signup(data);
       storeItem("token", response.token, 86400000);
       storeItem("user", response.data.user, 86400000);
+      storeItem("reset-email", response.data.user.email, 172800000);
       ctx.setUser(response.data.user);
       setProgress(80);
       setProgress(100);
