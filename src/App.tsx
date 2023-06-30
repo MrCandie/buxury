@@ -93,7 +93,10 @@ function App() {
                   <Route path="confirm" element={<ConfirmSignup />} />
                   <Route path="forgot-password" element={<ForgotPassword />} />
                   <Route path="check-mail" element={<CheckMail />} />
-                  <Route path="reset-password" element={<ResetPassword />} />
+                  <Route
+                    path="reset-password/:token"
+                    element={<ResetPassword />}
+                  />
                 </Route>
                 <Route path="history" element={<History />} />
                 <Route path="favorite" element={<Favorite />} />
