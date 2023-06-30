@@ -14,6 +14,7 @@ import NavItem from "./NavItem";
 import ImageComponent from "./Image";
 import {
   AiFillShopping,
+  AiOutlineHeart,
   AiOutlineHistory,
   AiOutlineLogout,
 } from "react-icons/ai";
@@ -54,6 +55,11 @@ export default function SideMenu({ isOpen, onClose }) {
                 link="history"
                 title="History"
                 icon={<AiOutlineHistory fontSize={20} />}
+              />
+              <NavItem
+                link="favorite"
+                title="Favorites"
+                icon={<AiOutlineHeart fontSize={20} />}
               />
               <NavItem
                 link="profile"

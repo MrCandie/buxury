@@ -19,13 +19,13 @@ export default function ProfileCenter() {
     >
       <Tabs colorScheme="blue" w="100%">
         <TabList>
-          <Tab fontSize={{ lg: 24, md: 20, base: 8 }} color="blue.500">
+          <Tab fontSize={{ lg: 24, md: 20, base: 14 }} color="blue.500">
             Profile
           </Tab>
-          <Tab fontSize={{ lg: 24, md: 20, base: 8 }} color="blue.500">
+          <Tab fontSize={{ lg: 24, md: 20, base: 14 }} color="blue.500">
             Security
           </Tab>
-          <Tab fontSize={{ lg: 24, md: 20, base: 8 }} color="blue.500">
+          <Tab fontSize={{ lg: 24, md: 20, base: 14 }} color="blue.500">
             Statistics
           </Tab>
         </TabList>

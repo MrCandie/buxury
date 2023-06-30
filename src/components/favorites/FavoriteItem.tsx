@@ -1,10 +1,9 @@
 import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
-import CartBtn from "components/ui/CartBtn";
 import ImageComponent from "components/ui/Image";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
-export default function CartItem() {
+export default function FavoriteItem() {
   const navigate = useNavigate();
   return (
     <Flex
@@ -29,13 +28,20 @@ export default function CartItem() {
           Naked Wolfe Sneakers
         </Heading>
         <Flex align="center" w="100%" justify="space-between">
-          <Text fontSize={{ lg: "20px", md: "20px", base: "16px" }}>$120</Text>
+          <Text
+            fontWeight="medium"
+            fontSize={{ lg: "22px", md: "20px", base: "16px" }}
+          >
+            $120
+          </Text>
           <s>$150</s>
         </Flex>
         <Flex align="center" w="100%" justify="space-between">
-          <CartBtn />
+          <Button p="0" colorScheme="red" variant="ghost">
+            Delete
+          </Button>
           <Button variant="ghost">
-            <AiOutlineHeart color="red" fontSize="24px" />
+            <AiFillHeart color="red" fontSize="24px" />
           </Button>
         </Flex>
       </Flex>

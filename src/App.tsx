@@ -32,6 +32,7 @@ import History from "components/history/History";
 import Admin from "components/admin/Admin";
 import UserDetail from "components/admin/users/userdetails/UserDetail";
 import OrderDetail from "components/admin/orders/order-detail/OrderDetail";
+import Favorite from "components/favorites/Favorite";
 
 function App() {
   return (
@@ -95,6 +96,7 @@ function App() {
                   <Route path="reset-password" element={<ResetPassword />} />
                 </Route>
                 <Route path="history" element={<History />} />
+                <Route path="favorite" element={<Favorite />} />
                 <Route path="admin">
                   <Route index element={<Admin />} />
                   <Route path="user/:id" element={<UserDetail />} />

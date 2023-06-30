@@ -30,7 +30,12 @@ export default function ProductItem() {
       <CardBody>
         <Stack spacing="4">
           <Box w="100%">
-            <ImageComponent src="/sneakers.jpeg" alt="product" height="200px" />
+            <ImageComponent
+              fit="contain"
+              src="/sneakers.jpeg"
+              alt="product"
+              height="200px"
+            />
           </Box>
           <Box
             cursor="pointer"
@@ -53,7 +58,11 @@ export default function ProductItem() {
       </CardBody>
       <CardFooter>
         <Flex align="center" w="100%" justify="space-between">
-          <Button colorScheme="blue" leftIcon={<AiOutlineShoppingCart />}>
+          <Button
+            onClick={() => navigate("/cart")}
+            colorScheme="blue"
+            leftIcon={<AiOutlineShoppingCart />}
+          >
             Add to cart
           </Button>
           <Button variant="ghost" colorScheme="red">

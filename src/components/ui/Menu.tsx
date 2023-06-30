@@ -5,6 +5,7 @@ import {
   AiFillShopping,
   AiOutlineHistory,
   AiOutlineLogout,
+  AiOutlineHeart,
 } from "react-icons/ai";
 import { FaUser } from "react-icons/fa";
 import { MdAdminPanelSettings } from "react-icons/md";
@@ -37,6 +38,11 @@ export default function Menu() {
             link="history"
             title="History"
             icon={<AiOutlineHistory fontSize={20} />}
+          />
+          <NavItem
+            link="favorite"
+            title="Favorites"
+            icon={<AiOutlineHeart fontSize={20} />}
           />
           <NavItem
             link="profile"

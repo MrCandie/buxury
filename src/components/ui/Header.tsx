@@ -25,7 +25,7 @@ export default function Header() {
             onClick={onOpen}
             display={{ lg: "none", md: "block", base: "block" }}
           >
-            <AiOutlineMenu color="#333" />
+            <AiOutlineMenu fontSize={24} color="#333" />
           </Box>
           <Flex align="center" gap="2rem">
             <Box onClick={() => navigate("/cart")} cursor="pointer">
