@@ -41,6 +41,14 @@ export default function Login() {
       setProgress(40);
       setProgress(60);
       const response = await login(data);
+      toast({
+        title: "Login successful",
+        description: "",
+        status: "success",
+        duration: 3000,
+        position: "top-right",
+        isClosable: true,
+      });
       storeItem("token", response.token, 86400000);
       storeItem("user", response.data.user, 86400000);
       setUser(response.data.user);

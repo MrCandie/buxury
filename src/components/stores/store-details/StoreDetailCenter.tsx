@@ -8,8 +8,26 @@ import {
 } from "@chakra-ui/react";
 import StoreProfile from "./StoreProfile";
 import Products from "./Products";
+import { useState, useEffect } from "react";
+import { viewStore } from "util/http";
+import { useParams } from "react-router-dom";
 
 export default function StoreDetailCenter() {
+  const [store, setStore] = useState("");
+  const params = useParams();
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await viewStore(params.slug);
+        setStore(response?.store);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, []);
+
   return (
     <Flex
       h="90vh"
@@ -29,7 +47,7 @@ export default function StoreDetailCenter() {
 
         <TabPanels>
           <TabPanel w="100%">
-            <StoreProfile />
+            <StoreProfile store={store} />
           </TabPanel>
           <TabPanel>
             <Products />

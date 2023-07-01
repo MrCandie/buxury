@@ -4,9 +4,10 @@ import { AiFillEdit } from "react-icons/ai";
 import EditStore from "./EditStore";
 import ReportStore from "./ReportStore";
 
-export default function StoreProfile() {
+export default function StoreProfile({ store }: any) {
   const [show, setShow] = useState(false);
   const [showReport, setShowReport] = useState(false);
+
   return (
     <>
       <Flex
@@ -38,7 +39,7 @@ export default function StoreProfile() {
             justify="center"
             w={{ lg: "30%", md: "100%", base: "100%" }}
           >
-            <Avatar name="dc luxury" src="/dcyy.jpg" size="2xl"></Avatar>
+            <Avatar name={store?.name} src={store?.image} size="2xl"></Avatar>
           </Flex>
 
           <Flex
@@ -58,7 +59,7 @@ export default function StoreProfile() {
                 Store Name
               </Heading>
               <Text fontSize="16px" fontWeight={500} color="#333">
-                DC LUXURY
+                {store?.name}
               </Text>
             </Flex>
 
@@ -73,7 +74,7 @@ export default function StoreProfile() {
                 Contact Email
               </Heading>
               <Text fontSize="16px" fontWeight={500} color="#333">
-                store@gmail.com
+                {store?.email}
               </Text>
             </Flex>
 
@@ -88,7 +89,7 @@ export default function StoreProfile() {
                 Phone Number
               </Heading>
               <Text fontSize="16px" fontWeight={500} color="#333">
-                6578906754
+                {store?.phone}
               </Text>
             </Flex>
 
@@ -102,8 +103,13 @@ export default function StoreProfile() {
               <Heading color="#333" size={{ lg: "md", md: "sm", base: "sm" }}>
                 Physical Address
               </Heading>
-              <Text fontSize="16px" fontWeight={500} color="#333">
-                no 20, store street ajegunle
+              <Text
+                fontSize="16px"
+                textTransform="capitalize"
+                fontWeight={500}
+                color="#333"
+              >
+                {store?.address}
               </Text>
             </Flex>
 
@@ -163,7 +169,7 @@ export default function StoreProfile() {
                 Join Date
               </Heading>
               <Text fontSize="16px" fontWeight={500} color="#333">
-                01/07/2023
+                {new Date(store?.createdAt).toLocaleDateString()}
               </Text>
             </Flex>
             <Flex align="start">
@@ -179,7 +185,7 @@ export default function StoreProfile() {
         </Flex>
       </Flex>
       {showReport && <ReportStore show={setShowReport} />}
-      {show && <EditStore show={setShow} />}
+      {show && <EditStore store={store} show={setShow} />}
     </>
   );
 }

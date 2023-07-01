@@ -18,7 +18,7 @@ import { AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
 import { Rating } from "react-simple-star-rating";
 import { useState } from "react";
 
-export default function StoreItem() {
+export default function StoreItem({ item }: any) {
   const navigate = useNavigate();
   const [rating, setRating] = useState(0);
 
@@ -45,19 +45,26 @@ export default function StoreItem() {
           >
             <ImageComponent
               fit="contain"
-              src="/dc.jpg"
+              src={item?.image}
               alt="product"
               height="200px"
             />
           </Box>
-          <Box cursor="pointer" onClick={() => navigate("/stores/dc-luxury")}>
+          <Box
+            cursor="pointer"
+            onClick={() => navigate(`/stores/${item?.slug}`)}
+          >
             <Heading size="xs" textTransform="uppercase">
-              DC Luxury
+              {item?.name}
             </Heading>
             <Flex w="100%" align="center" direction="row" gap="1rem">
-              <Rating size={20} readonly={true} initialValue={5} />
+              <Rating
+                size={20}
+                readonly={true}
+                initialValue={item?.ratingsAverage}
+              />
               <Text fontSize="14px" color="#333" fontWeight="medium">
-                4.5 rating
+                {item?.ratingsQuantity} rating
               </Text>
             </Flex>
           </Box>

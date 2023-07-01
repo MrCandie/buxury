@@ -52,3 +52,89 @@ export async function updatePassword(data) {
 
   return response.data;
 }
+
+export async function updateProfile(data) {
+  const token = getStoredItem("token");
+  const response = await axios.patch(`${API_URL}/user`, data, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}
+
+//////////////////////
+// stores
+export async function getUserStores() {
+  const token = getStoredItem("token");
+  const response = await axios.get(`${API_URL}/store/me`, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}
+
+export async function createStore(data) {
+  const token = getStoredItem("token");
+  const response = await axios.post(`${API_URL}/store`, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}
+
+export async function viewStore(slug) {
+  const token = getStoredItem("token");
+  const response = await axios.get(`${API_URL}/store/${slug}`, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}
+
+export async function updateStore(id, data) {
+  const token = getStoredItem("token");
+  const response = await axios.patch(`${API_URL}/store/me/update/${id}`, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}
+
+export async function getAllStores() {
+  const token = getStoredItem("token");
+  const response = await axios.get(`${API_URL}/store/all`, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}

@@ -8,7 +8,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-export default function FileComponent({ onChange, title }: any) {
+export default function FileComponent({
+  onChange,
+  title,
+  multiple = true,
+}: any) {
   return (
     <FormControl>
       <FormLabel>{title ? title : "Brief Documents"}</FormLabel>
@@ -43,7 +47,7 @@ export default function FileComponent({ onChange, title }: any) {
         type="file"
         name="document_upload"
         onChange={(e) => onChange(e)}
-        multiple
+        multiple={multiple}
       />
       {false && <FormHelperText>We'll never share your email.</FormHelperText>}
     </FormControl>

@@ -2,15 +2,36 @@ import { AddIcon } from "@chakra-ui/icons";
 import { Button, Flex, Heading, useDisclosure } from "@chakra-ui/react";
 import StoreList from "components/stores/StoreList";
 import CreateStore from "./CreateStore";
+import { useEffect, useState } from "react";
+import { getUserStores } from "util/http";
 
 export default function ManageStore() {
   const data = [1, 1, 1, 1];
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await getUserStores();
+        setList(response?.stores);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, []);
+
   return (
     <>
       <Flex w="100%" align="start" direction="column">
         <Flex w="100%" align="end" justify="end">
-          <Button onClick={onOpen} colorScheme="green" leftIcon={<AddIcon />}>
+          <Button
+            size={{ base: "sm", md: "sm" }}
+            onClick={onOpen}
+            colorScheme="green"
+            leftIcon={<AddIcon />}
+          >
             Create Store
           </Button>
         </Flex>
@@ -20,7 +41,7 @@ export default function ManageStore() {
               My Stores
             </Heading>
           </Flex>
-          <StoreList data={data} />
+          <StoreList data={list} />
         </Flex>
       </Flex>
       <CreateStore isOpen={isOpen} onClose={onClose} />

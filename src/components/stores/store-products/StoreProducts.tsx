@@ -17,7 +17,12 @@ export default function StoreProducts() {
             <Heading color="#333" size={{ lg: "md", md: "sm", base: "sm" }}>
               All Products
             </Heading>
-            <Button onClick={onOpen} colorScheme="green" leftIcon={<AddIcon />}>
+            <Button
+              size={{ base: "xs" }}
+              onClick={onOpen}
+              colorScheme="green"
+              leftIcon={<AddIcon />}
+            >
               Upload Product
             </Button>
           </Flex>

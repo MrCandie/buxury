@@ -5,15 +5,23 @@ export default function StoreList({ data }: any) {
   return (
     <Flex
       align="center"
-      justify={{ lg: "space-between", md: "center", base: "center" }}
+      justify={{ lg: "start", md: "center", base: "center" }}
       w="100%"
-      gap="1rem"
+      gap={{ lg: "2rem", md: "1rem", base: "1rem" }}
       wrap="wrap"
       p={{ lg: "2rem", md: "1rem", base: "0rem" }}
     >
-      {data.map((item: any, i: number) => (
-        <StoreItem key={i} />
-      ))}
+      {data?.length > 0 ? (
+        <>
+          {data.map((item: any, i: number) => (
+            <StoreItem item={item} key={i} />
+          ))}
+        </>
+      ) : (
+        <Flex w="100%" align="center" justify="center" height="30vh">
+          You haven't created any store
+        </Flex>
+      )}
     </Flex>
   );
 }

@@ -87,7 +87,7 @@ function App() {
                 <Route path="stores">
                   <Route index element={<Store />} />
                   <Route path=":id/products" element={<StoreProducts />} />
-                  <Route path=":name" element={<StoreDetail />} />
+                  <Route path=":slug" element={<StoreDetail />} />
                 </Route>
                 <Route path="cart">
                   <Route index element={<Cart />} />

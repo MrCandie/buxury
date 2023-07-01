@@ -8,16 +8,61 @@ import {
   ModalCloseButton,
   Button,
   Flex,
+  useToast,
 } from "@chakra-ui/react";
 import FileComponent from "components/ui/File";
 import InputComponent from "components/ui/Input";
 import PreviewComponent from "components/ui/Preview";
 import SelectComponent from "components/ui/Select";
-import TextareaComponent from "components/ui/Textarea";
 import { useState } from "react";
+import { createStore } from "util/http";
 
 export default function CreateStore({ isOpen, onClose }: any) {
   const [images, setImages] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [tags, setTags]: any = useState([]);
+
+  const toast = useToast();
+  const [loading, setLoading] = useState(false);
+
+  async function createHandler() {
+    const data = {
+      name,
+      email,
+      phone,
+      address,
+      tags,
+      image: images,
+    };
+
+    try {
+      setLoading(true);
+      await createStore(data);
+      toast({
+        title: "Store successfully created",
+        description: "",
+        status: "success",
+        duration: 3000,
+        position: "top-right",
+        isClosable: true,
+      });
+      window.location.reload();
+      setLoading(false);
+    } catch (error: any) {
+      setLoading(false);
+      toast({
+        title: `${error?.response?.data?.message || "something went wrong"}`,
+        description: "",
+        status: "error",
+        duration: 3000,
+        position: "top-right",
+        isClosable: true,
+      });
+    }
+  }
 
   return (
     <Modal size="2xl" isOpen={isOpen} onClose={onClose}>
@@ -29,29 +74,45 @@ export default function CreateStore({ isOpen, onClose }: any) {
           <Flex align="start" direction="column" w="100%" gap="1rem" py="1rem">
             <FileComponent
               title="Store Logo"
+              multiple={false}
               onChange={(e: any) => setImages(e.target.files[0])}
             />
-            <PreviewComponent file={images} />
-            <InputComponent label="Store Name" placeholder="Enter store name" />
-            <TextareaComponent
+            <Flex w="100%">
+              <PreviewComponent file={images} />
+            </Flex>
+            <InputComponent
+              onChange={(e: any) => setName(e.target.value)}
+              value={name}
+              label="Store Name"
+              placeholder="Enter store name"
+            />
+            <InputComponent
               label="Contact Email"
+              onChange={(e: any) => setEmail(e.target.value)}
+              value={email}
               placeholder="Enter contact email"
             />
-            <Flex align="center" gap="1rem" w="100%" justify="space-between">
-              <InputComponent
-                label="Phone Number"
-                placeholder="Enter phone number"
-                type="number"
-              />
-              <InputComponent
-                label="Physical Address (OPTIONAL)"
-                placeholder="Enter physical address"
-                type="number"
-              />
-            </Flex>
+
+            <InputComponent
+              label="Phone Number"
+              onChange={(e: any) => setPhone(e.target.value)}
+              value={phone}
+              placeholder="Enter phone number"
+              type="number"
+            />
+            <InputComponent
+              label="Physical Address (OPTIONAL)"
+              placeholder="Enter physical address"
+              onChange={(e: any) => setAddress(e.target.value)}
+              value={address}
+            />
+
             <SelectComponent
               label="Select tags (up to 4)"
               options={["shoes", "clothes"]}
+              onChange={(e: any) =>
+                setTags((prev: any) => [e.target.value, ...prev])
+              }
             />
           </Flex>
         </ModalBody>
@@ -61,7 +122,13 @@ export default function CreateStore({ isOpen, onClose }: any) {
             <Button colorScheme="red" onClick={onClose}>
               Cancel
             </Button>
-            <Button variant="solid" colorScheme="blue">
+            <Button
+              isLoading={loading}
+              loadingText=""
+              onClick={createHandler}
+              variant="solid"
+              colorScheme="blue"
+            >
               Create
             </Button>
           </Flex>
