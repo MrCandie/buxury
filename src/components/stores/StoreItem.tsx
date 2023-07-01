@@ -26,7 +26,12 @@ export default function StoreItem({ item }: any) {
     setRating(rate);
   };
   return (
-    <Card bg="white" color="#333">
+    <Card
+      w={{ lg: "25%", md: "40%", base: "90%" }}
+      mx="auto"
+      bg="white"
+      color="#333"
+    >
       <CardHeader>
         <Flex w="100%" align="center" justify="space-between">
           <Badge color="#333">Recommended</Badge>
