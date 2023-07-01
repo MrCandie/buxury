@@ -17,6 +17,7 @@ import {
   AiOutlineHeart,
   AiOutlineHistory,
   AiOutlineLogout,
+  AiFillAppstore,
 } from "react-icons/ai";
 import { FaUser } from "react-icons/fa";
 import { MdAdminPanelSettings } from "react-icons/md";
@@ -46,6 +47,11 @@ export default function SideMenu({ isOpen, onClose }) {
           >
             <Divider />
             <Flex w="100%" align="start" direction="column">
+              <NavItem
+                link="stores"
+                title="Stores"
+                icon={<AiFillAppstore fontSize={20} />}
+              />
               <NavItem
                 link="products"
                 title="Shop"

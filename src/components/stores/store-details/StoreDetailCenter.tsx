@@ -6,11 +6,10 @@ import {
   Tab,
   TabPanel,
 } from "@chakra-ui/react";
-import ProfileDetails from "./ProfileDetails";
-import Security from "./Security";
-import ManageStore from "./ManageStore";
+import StoreProfile from "./StoreProfile";
+import Products from "./Products";
 
-export default function ProfileCenter() {
+export default function StoreDetailCenter() {
   return (
     <Flex
       h="90vh"
@@ -24,22 +23,16 @@ export default function ProfileCenter() {
             Profile
           </Tab>
           <Tab fontSize={{ lg: 24, md: 20, base: 14 }} color="blue.500">
-            Security
-          </Tab>
-          <Tab fontSize={{ lg: 24, md: 20, base: 14 }} color="blue.500">
-            Stores
+            Products
           </Tab>
         </TabList>
 
         <TabPanels>
           <TabPanel w="100%">
-            <ProfileDetails />
+            <StoreProfile />
           </TabPanel>
           <TabPanel>
-            <Security />
-          </TabPanel>
-          <TabPanel>
-            <ManageStore />
+            <Products />
           </TabPanel>
         </TabPanels>
       </Tabs>

@@ -33,6 +33,9 @@ import Admin from "components/admin/Admin";
 import UserDetail from "components/admin/users/userdetails/UserDetail";
 import OrderDetail from "components/admin/orders/order-detail/OrderDetail";
 import Favorite from "components/favorites/Favorite";
+import Store from "components/stores/Store";
+import StoreProducts from "components/stores/store-products/StoreProducts";
+import StoreDetail from "components/stores/store-details/StoreDetail";
 
 function App() {
   return (
@@ -80,6 +83,11 @@ function App() {
                   <Route path=":id" element={<ProductDetail />} />
                   <Route path="edit/:id" element={<ChakraUIInferencer />} />
                   <Route path="create" element={<ChakraUIInferencer />} />
+                </Route>
+                <Route path="stores">
+                  <Route index element={<Store />} />
+                  <Route path=":id/products" element={<StoreProducts />} />
+                  <Route path=":name" element={<StoreDetail />} />
                 </Route>
                 <Route path="cart">
                   <Route index element={<Cart />} />

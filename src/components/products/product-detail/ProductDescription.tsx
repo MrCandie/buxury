@@ -11,8 +11,6 @@ export default function ProductDescription() {
 
   const handleRating = (rate: number) => {
     setRating(rate);
-
-    // other logic
   };
 
   return (

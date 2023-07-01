@@ -12,56 +12,47 @@ import {
 import FileComponent from "components/ui/File";
 import InputComponent from "components/ui/Input";
 import PreviewComponent from "components/ui/Preview";
+import SelectComponent from "components/ui/Select";
 import TextareaComponent from "components/ui/Textarea";
 import { useState } from "react";
 
-export default function CreateProduct({ isOpen, onClose }: any) {
-  const [images, setImages]: any = useState([]);
+export default function CreateStore({ isOpen, onClose }: any) {
+  const [images, setImages] = useState("");
 
   return (
     <Modal size="2xl" isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent bg="white">
-        <ModalHeader color="#333">Create new product</ModalHeader>
+        <ModalHeader color="#333">Create new store</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <Flex align="start" direction="column" w="100%" gap="1rem" py="1rem">
-            <InputComponent
-              label="Product Title"
-              placeholder="Enter product name"
+            <FileComponent
+              title="Store Logo"
+              onChange={(e: any) => setImages(e.target.files[0])}
             />
+            <PreviewComponent file={images} />
+            <InputComponent label="Store Name" placeholder="Enter store name" />
             <TextareaComponent
-              label="Product Description"
-              placeholder="Enter product description"
+              label="Contact Email"
+              placeholder="Enter contact email"
             />
             <Flex align="center" gap="1rem" w="100%" justify="space-between">
               <InputComponent
-                label="Product Price"
-                placeholder="Enter product price"
+                label="Phone Number"
+                placeholder="Enter phone number"
                 type="number"
               />
               <InputComponent
-                label="Product discount"
-                placeholder="10%"
+                label="Physical Address (OPTIONAL)"
+                placeholder="Enter physical address"
                 type="number"
               />
             </Flex>
-            <InputComponent
-              label="Total units available"
-              placeholder="10"
-              type="number"
+            <SelectComponent
+              label="Select tags (up to 4)"
+              options={["shoes", "clothes"]}
             />
-            <FileComponent
-              title="Product images (up to 5)"
-              onChange={(e: any) =>
-                setImages((prev: any) => [e.target.files[0], ...prev])
-              }
-            />
-            <Flex align="center" gap="1rem" w="100%" wrap="wrap">
-              {images?.map((image: any, i: number) => (
-                <PreviewComponent file={image} key={i} />
-              ))}
-            </Flex>
           </Flex>
         </ModalBody>
 
