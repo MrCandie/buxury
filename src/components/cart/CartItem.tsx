@@ -110,7 +110,6 @@ export default function CartItem({ item }: any) {
     <>
       <Loader progress={progress} setProgress={setProgress} />
       <Flex
-        cursor="pointer"
         align="center"
         borderBottom="1px solid #ccc"
         gap="1rem"
@@ -130,7 +129,7 @@ export default function CartItem({ item }: any) {
           <Flex w="100%" align="center" justify="space-between">
             <Heading
               textTransform="uppercase"
-              size={{ lg: "md", md: "md", base: "sm" }}
+              size={{ lg: "md", md: "md", base: "xs" }}
             >
               {product?.name}
             </Heading>
@@ -139,10 +138,10 @@ export default function CartItem({ item }: any) {
             </Button>
           </Flex>
           <Flex align="center" w="100%" justify="space-between">
-            <Text fontSize={{ lg: "18px", md: "18px", base: "16px" }}>
+            <Text fontSize={{ lg: "18px", md: "18px", base: "14px" }}>
               ${calcDicountedPrice(product?.price, product?.discount)}
             </Text>
-            <s>${product?.price}</s>
+            <s style={{ fontSize: "12px" }}>${product?.price}</s>
           </Flex>
           <Flex align="center" w="100%" justify="space-between">
             <CartBtn
