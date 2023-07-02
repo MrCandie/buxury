@@ -16,10 +16,19 @@ import ImageComponent from "components/ui/Image";
 import { AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
-export default function ProductItem() {
+function calcDicountedPrice(price: number, discount: number) {
+  return (price * (100 - discount)) / 100;
+}
+
+export default function ProductItem({ item }: any) {
   const navigate = useNavigate();
   return (
-    <Card bg="white" color="#333">
+    <Card
+      w={{ lg: "30%", md: "45%", base: "90%" }}
+      mx="auto"
+      bg="white"
+      color="#333"
+    >
       <CardHeader>
         <Flex w="100%" align="center" justify="space-between">
           <Badge color="#333">Available</Badge>
@@ -29,30 +38,35 @@ export default function ProductItem() {
 
       <CardBody>
         <Stack spacing="4">
-          <Box w="100%">
+          <Box
+            w="100%"
+            cursor="pointer"
+            onClick={() => navigate(`/products/${item?.id}`)}
+            _hover={{ opacity: "80%" }}
+          >
             <ImageComponent
               fit="contain"
-              src="/sneakers.jpeg"
+              src={item?.image[0] || ""}
               alt="product"
               height="200px"
             />
           </Box>
           <Box
             cursor="pointer"
-            onClick={() => navigate("/products/gf6t6ffdfgh")}
+            onClick={() => navigate(`/products/${item?.id}`)}
           >
             <Heading size="xs" textTransform="uppercase">
-              Naked Wolfe Sneakers
+              {item?.name}
             </Heading>
-            <Text pt="2" fontSize="sm">
-              Check out this latest naked wolf foot wear...
+            <Text textTransform="capitalize" pt="2" fontSize="sm">
+              {item?.description?.slice(0, 30)}
             </Text>
           </Box>
           <Flex align="center" w="100%" justify="space-between">
             <Text fontWeight="medium" fontSize="sm">
-              $250
+              ${calcDicountedPrice(item?.price, item?.discount)}
             </Text>
-            <s>$280</s>
+            <s>${item?.price}</s>
           </Flex>
         </Stack>
       </CardBody>

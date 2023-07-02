@@ -138,3 +138,59 @@ export async function getAllStores() {
 
   return response.data;
 }
+
+export async function uploadFile(data) {
+  const token = getStoredItem("token");
+  const response = await axios.post(`${API_URL}/product/upload`, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}
+
+export async function getAllProducts() {
+  const token = getStoredItem("token");
+  const response = await axios.get(`${API_URL}/product/all`, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}
+
+export async function viewProduct(id) {
+  const token = getStoredItem("token");
+  const response = await axios.get(`${API_URL}/product/${id}`, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}
+
+export async function createProduct(data) {
+  const token = getStoredItem("token");
+  const response = await axios.post(`${API_URL}/product`, data, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}

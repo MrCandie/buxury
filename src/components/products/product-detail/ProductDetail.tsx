@@ -2,8 +2,31 @@ import { Divider, Flex } from "@chakra-ui/react";
 import ProductBody from "./ProductBody";
 import Wrapper from "components/ui/Wrapper";
 import DetailTab from "./DetailTab";
+import { useState, useEffect } from "react";
+import { viewProduct } from "util/http";
+import { useParams } from "react-router-dom";
 
 export default function ProductDetail() {
+  const [product, setProduct] = useState("");
+  const [loading, setLoading] = useState(false);
+  const params = useParams();
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        setLoading(true);
+        const response = await viewProduct(params.id);
+        setLoading(false);
+        setProduct(response?.data);
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, []);
+
   return (
     <Wrapper>
       <Flex
@@ -15,7 +38,7 @@ export default function ProductDetail() {
         bg="white"
         color="#333"
       >
-        <ProductBody />
+        <ProductBody loading={loading} product={product} />
         <Divider />
         <DetailTab />
       </Flex>

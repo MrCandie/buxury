@@ -86,7 +86,7 @@ function App() {
                 </Route>
                 <Route path="stores">
                   <Route index element={<Store />} />
-                  <Route path=":id/products" element={<StoreProducts />} />
+                  <Route path=":slug/products" element={<StoreProducts />} />
                   <Route path=":slug" element={<StoreDetail />} />
                 </Route>
                 <Route path="cart">

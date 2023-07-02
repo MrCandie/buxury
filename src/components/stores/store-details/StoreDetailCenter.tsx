@@ -13,15 +13,21 @@ import { viewStore } from "util/http";
 import { useParams } from "react-router-dom";
 
 export default function StoreDetailCenter() {
-  const [store, setStore] = useState("");
+  const [store, setStore]: any = useState("");
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
   const params = useParams();
 
   useEffect(() => {
     async function fetchData() {
       try {
+        setLoading(true);
         const response = await viewStore(params.slug);
-        setStore(response?.store);
+        setLoading(false);
+        setProducts(response?.data?.products);
+        setStore(response?.data?.store);
       } catch (error) {
+        setLoading(false);
         console.log(error);
       }
     }
@@ -47,10 +53,10 @@ export default function StoreDetailCenter() {
 
         <TabPanels>
           <TabPanel w="100%">
-            <StoreProfile store={store} />
+            <StoreProfile loading={loading} store={store} />
           </TabPanel>
           <TabPanel>
-            <Products />
+            <Products products={products} id={store?.id} loading={loading} />
           </TabPanel>
         </TabPanels>
       </Tabs>

@@ -16,6 +16,8 @@ import ImageComponent from "components/ui/Image";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
 import { Rating } from "react-simple-star-rating";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import { useState } from "react";
 
 export default function StoreItem({ item }: any) {
@@ -46,7 +48,7 @@ export default function StoreItem({ item }: any) {
           <Box
             w="100%"
             cursor="pointer"
-            onClick={() => navigate("/stores/yjdghfufsd/products")}
+            onClick={() => navigate(`/stores/${item?.slug}/products`)}
           >
             <ImageComponent
               fit="contain"
@@ -60,7 +62,7 @@ export default function StoreItem({ item }: any) {
             onClick={() => navigate(`/stores/${item?.slug}`)}
           >
             <Heading size="xs" textTransform="uppercase">
-              {item?.name}
+              {item.name || <Skeleton />}
             </Heading>
             <Flex w="100%" align="center" direction="row" gap="1rem">
               <Rating
@@ -69,7 +71,7 @@ export default function StoreItem({ item }: any) {
                 initialValue={item?.ratingsAverage}
               />
               <Text fontSize="14px" color="#333" fontWeight="medium">
-                {item?.ratingsQuantity} rating
+                {item.ratingsQuantity} rating
               </Text>
             </Flex>
           </Box>

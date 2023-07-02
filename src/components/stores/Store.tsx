@@ -7,13 +7,17 @@ import { getAllStores } from "util/http";
 
 export default function Store() {
   const [list, setList] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
       try {
+        setLoading(true);
         const response = await getAllStores();
+        setLoading(false);
         setList(response?.stores?.reverse());
       } catch (error) {
+        setLoading(false);
         console.log(error);
       }
     }
@@ -29,7 +33,7 @@ export default function Store() {
             All Stores
           </Heading>
         </Flex>
-        <StoreList data={list} />
+        <StoreList loading={loading} data={list} />
       </Flex>
     </Wrapper>
   );

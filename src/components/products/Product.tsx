@@ -1,13 +1,30 @@
 import { Button, Flex, Heading, useDisclosure } from "@chakra-ui/react";
 import ProductList from "./ProductList";
-import { MdAdd } from "react-icons/md";
-import CreateProduct from "./CreateProduct";
+
 import Wrapper from "components/ui/Wrapper";
 import Filter from "components/ui/Filter";
+import { useState, useEffect } from "react";
+import { getAllProducts } from "util/http";
 
 export default function Product() {
-  const data = [1, 1, 1, 1, 1, 1, 1, 1, 1];
-  const { isOpen, onClose, onOpen } = useDisclosure();
+  const [list, setList] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        setLoading(true);
+        const response = await getAllProducts();
+        setLoading(false);
+        setList(response.data?.reverse());
+      } catch (error: any) {
+        setLoading(false);
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, []);
+
   return (
     <Wrapper>
       <Flex py="1rem" w="100%" align="start" direction="column" gap="1rem">
@@ -16,19 +33,10 @@ export default function Product() {
           <Heading color="#333" size={{ lg: "md", md: "sm", base: "sm" }}>
             All Products
           </Heading>
-          <Button
-            variant="solid"
-            bg="blue.500"
-            color="white"
-            leftIcon={<MdAdd />}
-            onClick={onOpen}
-          >
-            Create
-          </Button>
         </Flex>
-        <ProductList data={data} />
+
+        <ProductList data={list} loading={loading} />
       </Flex>
-      <CreateProduct isOpen={isOpen} onClose={onClose} />
     </Wrapper>
   );
 }
