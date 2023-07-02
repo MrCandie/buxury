@@ -11,10 +11,14 @@ import {
   Badge,
   Radio,
   Button,
+  useToast,
 } from "@chakra-ui/react";
 import ImageComponent from "components/ui/Image";
 import { AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import Loader from "components/ui/Loader";
+import { addCart } from "util/http";
 
 function calcDicountedPrice(price: number, discount: number) {
   return (price * (100 - discount)) / 100;
@@ -22,68 +26,123 @@ function calcDicountedPrice(price: number, discount: number) {
 
 export default function ProductItem({ item }: any) {
   const navigate = useNavigate();
-  return (
-    <Card
-      w={{ lg: "30%", md: "45%", base: "90%" }}
-      mx="auto"
-      bg="white"
-      color="#333"
-    >
-      <CardHeader>
-        <Flex w="100%" align="center" justify="space-between">
-          <Badge color="#333">Available</Badge>
-          <Radio colorScheme="gray" value="1" />
-        </Flex>
-      </CardHeader>
 
-      <CardBody>
-        <Stack spacing="4">
-          <Box
-            w="100%"
-            cursor="pointer"
-            onClick={() => navigate(`/products/${item?.id}`)}
-            _hover={{ opacity: "80%" }}
-          >
-            <ImageComponent
-              fit="contain"
-              src={item?.image[0] || ""}
-              alt="product"
-              height="200px"
+  const toast = useToast();
+  const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  async function cartHandler() {
+    const data = { productId: item.id };
+
+    try {
+      setLoading(true);
+      setProgress(20);
+      setProgress(40);
+      setProgress(60);
+      await addCart(data);
+      toast({
+        title: `${item.name} added to your cart`,
+        description: "",
+        status: "success",
+        duration: 3000,
+        position: "top-right",
+        isClosable: true,
+      });
+      setProgress(80);
+      setProgress(100);
+      setLoading(false);
+    } catch (error: any) {
+      setLoading(false);
+      setProgress(100);
+      toast({
+        title: `${error?.response?.data?.message || "something went wrong"}`,
+        description: "",
+        status: "error",
+        duration: 3000,
+        position: "top-right",
+        isClosable: true,
+      });
+    }
+  }
+
+  return (
+    <>
+      <Loader progress={progress} setProgress={setProgress} />
+      <Card
+        w={{ lg: "30%", md: "45%", base: "90%" }}
+        mx="auto"
+        bg="white"
+        color="#333"
+      >
+        <CardHeader>
+          <Flex w="100%" align="center" justify="space-between">
+            <Badge color="#333">Available</Badge>
+            <Radio
+              onChange={(e: any) => {
+                if (e.target.checked) {
+                  cartHandler();
+                }
+              }}
+              colorScheme="gray"
+              value="1"
             />
-          </Box>
-          <Box
-            cursor="pointer"
-            onClick={() => navigate(`/products/${item?.id}`)}
-          >
-            <Heading size="xs" textTransform="uppercase">
-              {item?.name}
-            </Heading>
-            <Text textTransform="capitalize" pt="2" fontSize="sm">
-              {item?.description?.slice(0, 30)}
-            </Text>
-          </Box>
-          <Flex align="center" w="100%" justify="space-between">
-            <Text fontWeight="medium" fontSize="sm">
-              ${calcDicountedPrice(item?.price, item?.discount)}
-            </Text>
-            <s>${item?.price}</s>
           </Flex>
-        </Stack>
-      </CardBody>
-      <CardFooter>
-        <Flex align="center" w="100%" justify="space-between">
-          <Button
-            onClick={() => navigate("/cart")}
-            colorScheme="blue"
-            leftIcon={<AiOutlineShoppingCart />}
-          >
-            Add to cart
-          </Button>
-          <Button variant="ghost" colorScheme="red">
-            <AiOutlineHeart />
-          </Button>
-        </Flex>
-      </CardFooter>
-    </Card>
+        </CardHeader>
+
+        <CardBody>
+          <Stack spacing="4">
+            <Box
+              w="100%"
+              cursor="pointer"
+              onClick={() => navigate(`/products/${item?.id}`)}
+              _hover={{ opacity: "80%" }}
+            >
+              <ImageComponent
+                fit="contain"
+                src={item?.image[0] || ""}
+                alt="product"
+                height="200px"
+              />
+            </Box>
+            <Box
+              cursor="pointer"
+              onClick={() => navigate(`/products/${item?.id}`)}
+            >
+              <Heading size="xs" textTransform="uppercase">
+                {item?.name}
+              </Heading>
+              <Text textTransform="capitalize" pt="2" fontSize="sm">
+                {item?.description?.slice(0, 30)}
+              </Text>
+            </Box>
+            <Flex align="center" w="100%" justify="space-between">
+              <Text fontWeight="medium" fontSize="sm">
+                ${calcDicountedPrice(item?.price, item?.discount)}
+              </Text>
+              <s>${item?.price}</s>
+            </Flex>
+          </Stack>
+        </CardBody>
+        <CardFooter>
+          <Flex align="center" w="100%" justify="space-between">
+            <Button
+              onClick={() => {
+                cartHandler();
+                navigate("/cart");
+              }}
+              colorScheme="blue"
+              leftIcon={<AiOutlineShoppingCart />}
+              isLoading={loading}
+              loadingText=""
+            >
+              Add to cart
+            </Button>
+            <Button variant="ghost" colorScheme="red">
+              <AiOutlineHeart />
+            </Button>
+          </Flex>
+        </CardFooter>
+      </Card>
+    </>
   );
 }

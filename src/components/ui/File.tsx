@@ -12,6 +12,7 @@ export default function FileComponent({
   onChange,
   title,
   multiple = true,
+  disabled = false,
 }: any) {
   return (
     <FormControl>
@@ -45,6 +46,7 @@ export default function FileComponent({
         id="file"
         display="none"
         type="file"
+        isDisabled={disabled}
         name="document_upload"
         onChange={(e) => onChange(e)}
         multiple={multiple}

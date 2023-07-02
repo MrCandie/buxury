@@ -194,3 +194,61 @@ export async function createProduct(data) {
 
   return response.data;
 }
+
+///////////////////////////
+// cart
+export async function addCart(data) {
+  const token = getStoredItem("token");
+  const response = await axios.post(`${API_URL}/cart`, data, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}
+
+export async function viewCart() {
+  const token = getStoredItem("token");
+  const response = await axios.get(`${API_URL}/cart`, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}
+
+export async function removeCart(id, data) {
+  const token = getStoredItem("token");
+  const response = await axios.post(`${API_URL}/cart/${id}`, data, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}
+
+export async function getCart(id) {
+  const token = getStoredItem("token");
+  const response = await axios.get(`${API_URL}/cart/${id}`, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}

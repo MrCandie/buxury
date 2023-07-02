@@ -116,6 +116,7 @@ export default function CreateProduct({ isOpen, onClose, id }: any) {
               value={units}
             />
             <FileComponent
+              disabled={images.length >= 4}
               title="Product images (up to 5)"
               onChange={(e: any) =>
                 setImages((prev: any) => [e.target.files[0], ...prev])

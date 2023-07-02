@@ -2,8 +2,28 @@ import { Divider, Flex, Heading } from "@chakra-ui/react";
 import CartList from "./CartList";
 import OrderSummary from "./OrderSummary";
 import Wrapper from "components/ui/Wrapper";
+import { useState, useEffect } from "react";
+import { viewCart } from "util/http";
 
 export default function Cart() {
+  const [list, setList] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        setLoading(true);
+        const response = await viewCart();
+        setLoading(false);
+        setList(response?.data);
+      } catch (error) {
+        setLoading(false);
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, []);
+
   return (
     <Wrapper>
       <Flex
@@ -26,7 +46,7 @@ export default function Cart() {
           justify="space-between"
           position="relative"
         >
-          <CartList />
+          <CartList loading={loading} data={list} />
           <OrderSummary />
         </Flex>
       </Flex>
