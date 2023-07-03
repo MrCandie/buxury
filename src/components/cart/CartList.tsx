@@ -1,7 +1,14 @@
 import { Box, Flex, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 import CartItem from "./CartItem";
 
-export default function CartList({ data, loading }: any) {
+export default function CartList({
+  data,
+  loading,
+  isLoading,
+  setIsLoading,
+  isLoading1,
+  setIsLoading1,
+}: any) {
   const dummyData = [1, 1, 1, 1, 1, 1];
   return (
     <Flex
@@ -42,7 +49,14 @@ export default function CartList({ data, loading }: any) {
           {data?.length > 0 ? (
             <>
               {data?.map((item: any, i: number) => (
-                <CartItem item={item} key={i} />
+                <CartItem
+                  isLoading={isLoading}
+                  setIsLoading={setIsLoading}
+                  isLoading1={isLoading1}
+                  setIsLoading1={setIsLoading1}
+                  item={item}
+                  key={i}
+                />
               ))}
             </>
           ) : (

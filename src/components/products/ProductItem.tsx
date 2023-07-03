@@ -14,11 +14,15 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import ImageComponent from "components/ui/Image";
-import { AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
+import {
+  AiOutlineShoppingCart,
+  AiOutlineHeart,
+  AiFillHeart,
+} from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Loader from "components/ui/Loader";
-import { addCart } from "util/http";
+import { addCart, addFavorite, checkProduct, deleteFavorite } from "util/http";
 
 function calcDicountedPrice(price: number, discount: number) {
   return (price * (100 - discount)) / 100;
@@ -30,6 +34,61 @@ export default function ProductItem({ item }: any) {
   const toast = useToast();
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await checkProduct({ productId: item.id });
+        setIsFavorite(response?.exists);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, [isLoading]);
+
+  async function favoriteHandler() {
+    const data = {
+      productId: item.id,
+    };
+
+    try {
+      setIsLoading(true);
+      setProgress(20);
+      setProgress(40);
+      setProgress(60);
+      if (isFavorite) {
+        await deleteFavorite(item.id);
+      } else {
+        await addFavorite(data);
+      }
+      await "";
+      toast({
+        title: `Successful`,
+        description: "",
+        status: "success",
+        duration: 3000,
+        position: "top-right",
+        isClosable: true,
+      });
+      setProgress(80);
+      setProgress(100);
+      setIsLoading(false);
+    } catch (error: any) {
+      setIsLoading(false);
+      setProgress(100);
+      toast({
+        title: `${error?.response?.data?.message || "something went wrong"}`,
+        description: "",
+        status: "error",
+        duration: 3000,
+        position: "top-right",
+        isClosable: true,
+      });
+    }
+  }
 
   async function cartHandler() {
     const data = { productId: item.id };
@@ -137,8 +196,14 @@ export default function ProductItem({ item }: any) {
             >
               Add to cart
             </Button>
-            <Button variant="ghost" colorScheme="red">
-              <AiOutlineHeart />
+            <Button
+              isLoading={isLoading}
+              loadingText=""
+              onClick={favoriteHandler}
+              variant="ghost"
+              colorScheme="red"
+            >
+              {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
             </Button>
           </Flex>
         </CardFooter>

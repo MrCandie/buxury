@@ -8,6 +8,8 @@ import { viewCart } from "util/http";
 export default function Cart() {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading1, setIsLoading1] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -46,8 +48,15 @@ export default function Cart() {
           justify="space-between"
           position="relative"
         >
-          <CartList loading={loading} data={list} />
-          <OrderSummary />
+          <CartList
+            setIsLoading={setIsLoading}
+            isLoading={isLoading}
+            setIsLoading1={setIsLoading1}
+            isLoading1={isLoading1}
+            loading={loading}
+            data={list}
+          />
+          <OrderSummary loading={isLoading} loading1={isLoading1} />
         </Flex>
       </Flex>
     </Wrapper>

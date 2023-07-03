@@ -2,10 +2,17 @@ import { Box, Button, Flex, Heading, Text, useToast } from "@chakra-ui/react";
 import CartBtn from "components/ui/CartBtn";
 import Loader from "components/ui/Loader";
 import { useState, useEffect } from "react";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
-import { addCart, getCart, removeCart } from "util/http";
+import {
+  addCart,
+  addFavorite,
+  checkProduct,
+  deleteFavorite,
+  getCart,
+  removeCart,
+} from "util/http";
 
 export default function ProductDescription({ product }: any) {
   const navigate = useNavigate();
@@ -15,6 +22,20 @@ export default function ProductDescription({ product }: any) {
   const [loading1, setLoading1] = useState(false);
   const [progress, setProgress] = useState(0);
   const [cart, setCart]: any = useState("");
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await checkProduct({ productId: product.id });
+        setIsFavorite(response?.exists);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, [isLoading]);
 
   useEffect(() => {
     async function fetchData() {
@@ -27,6 +48,47 @@ export default function ProductDescription({ product }: any) {
     }
     fetchData();
   }, [loading, loading1, product]);
+
+  async function favoriteHandler() {
+    const data = {
+      productId: product.id,
+    };
+
+    try {
+      setIsLoading(true);
+      setProgress(20);
+      setProgress(40);
+      setProgress(60);
+      if (isFavorite) {
+        await deleteFavorite(product.id);
+      } else {
+        await addFavorite(data);
+      }
+      await "";
+      toast({
+        title: `${product.name} added to your favorites`,
+        description: "",
+        status: "success",
+        duration: 3000,
+        position: "top-right",
+        isClosable: true,
+      });
+      setProgress(80);
+      setProgress(100);
+      setIsLoading(false);
+    } catch (error: any) {
+      setIsLoading(false);
+      setProgress(100);
+      toast({
+        title: `${error?.response?.data?.message || "something went wrong"}`,
+        description: "",
+        status: "error",
+        duration: 3000,
+        position: "top-right",
+        isClosable: true,
+      });
+    }
+  }
 
   async function removeCartHandler() {
     const data: any = { type: "reduce" };
@@ -72,7 +134,7 @@ export default function ProductDescription({ product }: any) {
       setProgress(60);
       await addCart(data);
       toast({
-        title: `${product.name} added to your cart`,
+        title: `Successful`,
         description: "",
         status: "success",
         duration: 3000,
@@ -116,8 +178,17 @@ export default function ProductDescription({ product }: any) {
           <Heading textTransform="uppercase" color="#333" size="lg">
             {product?.name}
           </Heading>
-          <Button variant="ghost">
-            <AiOutlineHeart fontSize={24} color="red" />
+          <Button
+            isLoading={isLoading}
+            loadingText=""
+            onClick={favoriteHandler}
+            variant="ghost"
+          >
+            {isFavorite ? (
+              <AiFillHeart fontSize={24} color="red" />
+            ) : (
+              <AiOutlineHeart fontSize={24} color="red" />
+            )}
           </Button>
         </Flex>
         <Flex w="100%" align="center" direction="row">

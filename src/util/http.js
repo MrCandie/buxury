@@ -252,3 +252,77 @@ export async function getCart(id) {
 
   return response.data;
 }
+
+export async function getTotalAmount() {
+  const token = getStoredItem("token");
+  const response = await axios.get(`${API_URL}/cart/total-amount`, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}
+
+export async function checkProduct(data) {
+  const token = getStoredItem("token");
+  const response = await axios.post(`${API_URL}/favorite/check-product`, data, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}
+
+export async function addFavorite(data) {
+  const token = getStoredItem("token");
+  const response = await axios.post(`${API_URL}/favorite`, data, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}
+
+export async function getFavorites() {
+  const token = getStoredItem("token");
+  const response = await axios.get(`${API_URL}/favorite`, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}
+
+export async function deleteFavorite(id) {
+  const token = getStoredItem("token");
+  const response = await axios.post(
+    `${API_URL}/favorite/${id}`,
+    {},
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  return response.data;
+}

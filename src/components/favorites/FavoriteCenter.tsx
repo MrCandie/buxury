@@ -2,7 +2,7 @@ import { Flex, Heading } from "@chakra-ui/react";
 import Filter from "components/ui/Filter";
 import FavoriteList from "./FavoriteList";
 
-export default function FavoriteCenter() {
+export default function FavoriteCenter({ list, loading }: any) {
   const data = [1, 1, 1, 1, 1, 1, 1, 1];
   return (
     <Flex
@@ -18,7 +18,7 @@ export default function FavoriteCenter() {
             All Products
           </Heading>
         </Flex>
-        <FavoriteList data={data} />
+        <FavoriteList loading={loading} data={list} />
       </Flex>
     </Flex>
   );

@@ -1,8 +1,24 @@
 import { Button, Divider, Flex, Heading } from "@chakra-ui/react";
 import InputComponent from "components/ui/Input";
 import DeliveryAddress from "./DeliverAddress";
+import { useEffect, useState } from "react";
+import { getTotalAmount } from "util/http";
 
-export default function OrderSummary() {
+export default function OrderSummary({ loading, loading1 }: any) {
+  const [price, setPrice] = useState(0);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await getTotalAmount();
+        setPrice(response.amount);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, [loading, loading1]);
+
   return (
     <Flex
       align="start"
@@ -26,7 +42,7 @@ export default function OrderSummary() {
           SubTotal
         </Heading>
         <Heading color="#333" size="sm">
-          $1,200
+          ${price?.toLocaleString()}
         </Heading>
       </Flex>
       <Flex w="100%" my="2rem" align="start" direction="column" gap="1rem">
@@ -45,7 +61,7 @@ export default function OrderSummary() {
           Total
         </Heading>
         <Heading color="#333" size="sm">
-          $1,200
+          $0.00
         </Heading>
       </Flex>
       <Divider />

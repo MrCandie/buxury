@@ -11,13 +11,18 @@ function calcDicountedPrice(price: number, discount: number) {
   return (price * (100 - discount)) / 100;
 }
 
-export default function CartItem({ item }: any) {
+export default function CartItem({
+  item,
+  isLoading,
+  setIsLoading,
+  isLoading1,
+  setIsLoading1,
+}: any) {
   const navigate = useNavigate();
   const product = item?.product[0];
 
   const toast = useToast();
-  const [loading, setLoading] = useState(false);
-  const [loading1, setLoading1] = useState(false);
+ 
   const [progress, setProgress] = useState(0);
   const [cart, setCart]: any = useState("");
 
@@ -31,13 +36,13 @@ export default function CartItem({ item }: any) {
       }
     }
     fetchData();
-  }, [loading, loading1, product]);
+  }, [isLoading, isLoading1, product]);
 
   async function removeCartHandler(type: string) {
     const data: any = { type: type ? type : "reduce" };
 
     try {
-      setLoading1(true);
+      setIsLoading1(true);
       setProgress(20);
       setProgress(40);
       setProgress(60);
@@ -57,9 +62,9 @@ export default function CartItem({ item }: any) {
       });
       setProgress(80);
       setProgress(100);
-      setLoading1(false);
+      setIsLoading1(false);
     } catch (error: any) {
-      setLoading1(false);
+      setIsLoading1(false);
       setProgress(100);
       toast({
         title: `${error?.response?.data?.message || "something went wrong"}`,
@@ -76,7 +81,7 @@ export default function CartItem({ item }: any) {
     const data = { productId: product.id };
 
     try {
-      setLoading(true);
+      setIsLoading(true);
       setProgress(20);
       setProgress(40);
       setProgress(60);
@@ -91,9 +96,9 @@ export default function CartItem({ item }: any) {
       });
       setProgress(80);
       setProgress(100);
-      setLoading(false);
+      setIsLoading(false);
     } catch (error: any) {
-      setLoading(false);
+      setIsLoading(false);
       setProgress(100);
       toast({
         title: `${error?.response?.data?.message || "something went wrong"}`,
@@ -139,16 +144,22 @@ export default function CartItem({ item }: any) {
           </Flex>
           <Flex align="center" w="100%" justify="space-between">
             <Text fontSize={{ lg: "18px", md: "18px", base: "14px" }}>
-              ${calcDicountedPrice(product?.price, product?.discount)}
+              $
+              {calcDicountedPrice(
+                product?.price,
+                product?.discount
+              )?.toLocaleString()}
             </Text>
-            <s style={{ fontSize: "12px" }}>${product?.price}</s>
+            <s style={{ fontSize: "12px" }}>
+              ${product?.price?.toLocaleString()}
+            </s>
           </Flex>
           <Flex align="center" w="100%" justify="space-between">
             <CartBtn
               addHandler={addCartHandler}
               removeHandler={removeCartHandler}
-              loading={loading}
-              loading1={loading1}
+              loading={isLoading}
+              loading1={isLoading1}
               quantity={cart?.quantity}
             />
             <Button
@@ -156,7 +167,7 @@ export default function CartItem({ item }: any) {
               bg="transparent"
               colorScheme="red"
               variant="ghost"
-              isLoading={loading1}
+              isLoading={isLoading1}
               loadingText=""
               onClick={() => removeCartHandler("delete")}
             >
