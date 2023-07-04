@@ -4,6 +4,7 @@ import Shipping from "./shipping/Shipping";
 import Warranty from "./warranty/Warranty";
 import ReturnPolicy from "./return-policy/ReturnPolicy";
 import Reviews from "./reviews/Reviews";
+import Chat from "./chat/Chat";
 
 export default function DetailTab({ reviews }: any) {
   return (
@@ -14,6 +15,7 @@ export default function DetailTab({ reviews }: any) {
         <Tab fontSize={{ lg: 24, md: 20, base: 8 }}>Shipping</Tab>
         <Tab fontSize={{ lg: 24, md: 20, base: 8 }}>Return Policy</Tab>
         <Tab fontSize={{ lg: 24, md: 20, base: 8 }}>Reviews</Tab>
+        <Tab fontSize={{ lg: 24, md: 20, base: 8 }}>Chat</Tab>
       </TabList>
 
       <TabPanels>
@@ -31,6 +33,9 @@ export default function DetailTab({ reviews }: any) {
         </TabPanel>
         <TabPanel>
           <Reviews reviews={reviews} />
+        </TabPanel>
+        <TabPanel>
+          <Chat />
         </TabPanel>
       </TabPanels>
     </Tabs>

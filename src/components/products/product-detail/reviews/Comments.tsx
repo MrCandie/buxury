@@ -4,23 +4,31 @@ import { useState } from "react";
 import { Rating } from "react-simple-star-rating";
 
 export default function Comments({ reviews }: any) {
-  const [rating, setRating] = useState(0);
-  const data = [1, 1, 1, 1, 1, 1, 1, 1];
-
-  const handleRating = (rate: number) => {
-    setRating(rate);
-
-    // other logic
-  };
   return (
     <Flex py="1rem" w="100%" align="start" direction="column" gap="1rem">
       {reviews?.reverse().map((item: any, i: number) => (
         <Flex key={i} align="center" w="100%" gap="2.5rem">
           <Flex align="center" gap="1rem">
-            <Avatar name={item?.user[0]?.name} />
-            <Heading size="sm" color="#333">
-              {item?.user[0]?.name}
-            </Heading>
+            <Avatar
+              size={{ lg: "sm", md: "sm", base: "xs" }}
+              name={item?.user[0]?.name}
+            />
+            <Flex align="start" direction="column" gap="3px">
+              <Heading
+                textTransform="capitalize"
+                size={{ lg: "sm", md: "xs", base: "xs" }}
+                color="#333"
+              >
+                {item?.user[0]?.name}
+              </Heading>
+              <Text
+                textTransform="capitalize"
+                fontSize={{ lg: "14px", md: "12px", base: "8px" }}
+                color="#333"
+              >
+                {new Date(item?.createdAt).toLocaleDateString()}
+              </Text>
+            </Flex>
           </Flex>
           <Flex align="start" direction="column" gap="4px">
             <Rating
@@ -29,12 +37,15 @@ export default function Comments({ reviews }: any) {
                 alignItems: "center",
                 flexDirection: "row",
               }}
-              onClick={handleRating}
               readonly={true}
               initialValue={+item?.rating}
-              size={25}
+              size={18}
             />
-            <Text fontSize="16px" color="#333">
+            <Text
+              textTransform="capitalize"
+              fontSize={{ lg: "16px", md: "14px", base: "13px" }}
+              color="#333"
+            >
               {item?.review}
             </Text>
           </Flex>
