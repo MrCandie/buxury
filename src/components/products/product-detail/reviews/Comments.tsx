@@ -3,7 +3,7 @@ import ImageComponent from "components/ui/Image";
 import { useState } from "react";
 import { Rating } from "react-simple-star-rating";
 
-export default function Comments() {
+export default function Comments({ reviews }: any) {
   const [rating, setRating] = useState(0);
   const data = [1, 1, 1, 1, 1, 1, 1, 1];
 
@@ -14,12 +14,12 @@ export default function Comments() {
   };
   return (
     <Flex py="1rem" w="100%" align="start" direction="column" gap="1rem">
-      {data.map((item, i) => (
+      {reviews?.reverse().map((item: any, i: number) => (
         <Flex key={i} align="center" w="100%" gap="2.5rem">
           <Flex align="center" gap="1rem">
-            <Avatar name="exekiel" />
+            <Avatar name={item?.user[0]?.name} />
             <Heading size="sm" color="#333">
-              Ezekiel
+              {item?.user[0]?.name}
             </Heading>
           </Flex>
           <Flex align="start" direction="column" gap="4px">
@@ -31,11 +31,11 @@ export default function Comments() {
               }}
               onClick={handleRating}
               readonly={true}
-              initialValue={3.5}
+              initialValue={+item?.rating}
               size={25}
             />
             <Text fontSize="16px" color="#333">
-              EzekielDeliver was really slow
+              {item?.review}
             </Text>
           </Flex>
         </Flex>

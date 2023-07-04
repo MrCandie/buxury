@@ -326,3 +326,17 @@ export async function deleteFavorite(id) {
 
   return response.data;
 }
+
+export async function addReview(data) {
+  const token = getStoredItem("token");
+  const response = await axios.post(`${API_URL}/review`, data, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}

@@ -15,6 +15,7 @@ export default function Product() {
       try {
         setLoading(true);
         const response = await getAllProducts();
+
         setLoading(false);
         setList(response.data?.reverse());
       } catch (error: any) {

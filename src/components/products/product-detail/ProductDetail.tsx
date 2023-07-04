@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 
 export default function ProductDetail() {
   const [product, setProduct] = useState("");
+  const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(false);
   const params = useParams();
 
@@ -16,9 +17,10 @@ export default function ProductDetail() {
       try {
         setLoading(true);
         const response = await viewProduct(params.id);
+
         setLoading(false);
-        setProduct(response?.data);
-        console.log(response);
+        setProduct(response?.data?.product);
+        setReviews(response?.data?.reviews);
       } catch (error) {
         console.log(error);
         setLoading(false);
@@ -40,7 +42,7 @@ export default function ProductDetail() {
       >
         <ProductBody loading={loading} product={product} />
         <Divider />
-        <DetailTab />
+        <DetailTab reviews={reviews} />
       </Flex>
     </Wrapper>
   );

@@ -5,7 +5,7 @@ import Warranty from "./warranty/Warranty";
 import ReturnPolicy from "./return-policy/ReturnPolicy";
 import Reviews from "./reviews/Reviews";
 
-export default function DetailTab() {
+export default function DetailTab({ reviews }: any) {
   return (
     <Tabs>
       <TabList>
@@ -30,7 +30,7 @@ export default function DetailTab() {
           <ReturnPolicy />
         </TabPanel>
         <TabPanel>
-          <Reviews />
+          <Reviews reviews={reviews} />
         </TabPanel>
       </TabPanels>
     </Tabs>
