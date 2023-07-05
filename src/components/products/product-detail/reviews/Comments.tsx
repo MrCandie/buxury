@@ -11,7 +11,7 @@ export default function Comments({ reviews }: any) {
           <Flex align="center" gap="1rem">
             <Avatar
               size={{ lg: "sm", md: "sm", base: "xs" }}
-              name={item?.user[0]?.name}
+              name={item?.user}
             />
             <Flex align="start" direction="column" gap="3px">
               <Heading
@@ -19,7 +19,7 @@ export default function Comments({ reviews }: any) {
                 size={{ lg: "sm", md: "xs", base: "xs" }}
                 color="#333"
               >
-                {item?.user[0]?.name}
+                {item?.user}
               </Heading>
               <Text
                 textTransform="capitalize"

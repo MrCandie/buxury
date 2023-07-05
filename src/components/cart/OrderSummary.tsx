@@ -1,11 +1,15 @@
-import { Button, Divider, Flex, Heading } from "@chakra-ui/react";
+import { Button, Divider, Flex, Heading, useToast } from "@chakra-ui/react";
 import InputComponent from "components/ui/Input";
 import DeliveryAddress from "./DeliverAddress";
 import { useEffect, useState } from "react";
-import { getTotalAmount } from "util/http";
+import { createOrder, getTotalAmount, viewCart } from "util/http";
+import { storeItem } from "util/lib";
 
 export default function OrderSummary({ loading, loading1 }: any) {
   const [price, setPrice] = useState(0);
+  const [cart, setCart] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const toast = useToast();
 
   useEffect(() => {
     async function fetchData() {
@@ -18,6 +22,58 @@ export default function OrderSummary({ loading, loading1 }: any) {
     }
     fetchData();
   }, [loading, loading1]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await viewCart();
+        setCart(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, []);
+
+  async function checkoutHandler() {
+    const data = { order: cart, price: String(price) + ".00" };
+    console.log(data);
+
+    if (cart.length === 0) {
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+      const response = await createOrder(data);
+      storeItem(
+        "transaction-reference",
+        response.data.data.reference,
+        86400000
+      );
+      window.location.href = response?.data?.data?.authorization_url;
+
+      console.log(response);
+      toast({
+        title: "Successful... Redirecting to payment page",
+        description: "",
+        status: "success",
+        duration: 3000,
+        position: "top-right",
+        isClosable: true,
+      });
+      setIsLoading(false);
+    } catch (error: any) {
+      toast({
+        title: `${error?.response?.data.message || "something went wrong"}`,
+        description: "",
+        status: "error",
+        duration: 3000,
+        position: "top-right",
+        isClosable: true,
+      });
+    }
+  }
 
   return (
     <Flex
@@ -61,13 +117,21 @@ export default function OrderSummary({ loading, loading1 }: any) {
           Total
         </Heading>
         <Heading color="#333" size="sm">
-          $0.00
+          ${price?.toLocaleString()}
         </Heading>
       </Flex>
       <Divider />
       <DeliveryAddress />
       <Divider />
-      <Button w="100%" p="1rem" colorScheme="green" variant="solid">
+      <Button
+        onClick={checkoutHandler}
+        isLoading={isLoading}
+        loadingText=""
+        w="100%"
+        p="1rem"
+        colorScheme="green"
+        variant="solid"
+      >
         Proceed to checkout
       </Button>
     </Flex>
