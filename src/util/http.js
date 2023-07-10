@@ -329,7 +329,7 @@ export async function deleteFavorite(id) {
 
 export async function addReview(data) {
   const token = getStoredItem("token");
-  const response = await axios.post(`${API_URL}/review`, data, {
+  const response = await axios.post(`${API_URL}/product/review`, data, {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
@@ -346,6 +346,20 @@ export async function addReview(data) {
 export async function createOrder(data) {
   const token = getStoredItem("token");
   const response = await axios.post(`${API_URL}/order`, data, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}
+
+export async function getOrder(reference) {
+  const token = getStoredItem("token");
+  const response = await axios.get(`${API_URL}/order/success/${reference}`, {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",

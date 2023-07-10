@@ -4,7 +4,13 @@ import Overlay from "components/ui/Overlay";
 import Rate from "components/ui/Rating";
 import TextareaComponent from "components/ui/Textarea";
 
-export default function Review({ show }: any) {
+export default function Review({
+  show,
+  setReview,
+  setRating,
+  onReview,
+  loading,
+}: any) {
   return (
     <>
       <Overlay hide={() => show(false)} />
@@ -15,11 +21,27 @@ export default function Review({ show }: any) {
           </Heading>
           <Divider />
           <Flex w="100%" align="center" justify="center">
-            <Rate size={35} readonly={false} />
+            <Rate
+              onRating={(e: any) => setRating(e)}
+              size={35}
+              readonly={false}
+            />
           </Flex>
-          <TextareaComponent label="Add comment" placeholder="Add Comment" />
+          <TextareaComponent
+            onChange={(e: any) => setReview(e.target.value)}
+            label="Add comment"
+            placeholder="Add Comment"
+          />
           <Flex w="100%" align="center">
-            <Button w="100%" variant="solid" bg="green.500" color="#fff">
+            <Button
+              onClick={onReview}
+              w="100%"
+              variant="solid"
+              bg="green.500"
+              color="#fff"
+              isLoading={loading}
+              loadingText=""
+            >
               Submit
             </Button>
           </Flex>

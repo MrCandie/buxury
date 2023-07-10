@@ -57,7 +57,6 @@ export default function OrderSummary({ loading, loading1 }: any) {
       );
       window.location.href = response?.data?.data?.authorization_url;
 
-      console.log(response);
       toast({
         title: "Successful... Redirecting to payment page",
         description: "",
