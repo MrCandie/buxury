@@ -36,7 +36,11 @@ export default function OrderSummary({ loading, loading1 }: any) {
   }, []);
 
   async function checkoutHandler() {
-    const data = { order: cart, price: String(price) + ".00" };
+    const data = {
+      order: cart,
+      price: String(price) + ".00",
+      callback_url: "https://buxury.vercel.app/history",
+    };
     console.log(data);
 
     if (cart.length === 0) {

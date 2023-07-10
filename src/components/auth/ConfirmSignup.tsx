@@ -75,8 +75,6 @@ export default function ConfirmSignup() {
         position: "top-right",
         isClosable: true,
       });
-
-      navigate("/");
     } catch (error: any) {
       setProgress(100);
       toast({
@@ -123,7 +121,7 @@ export default function ConfirmSignup() {
         position: "top-right",
         isClosable: true,
       });
-
+      navigate("/");
       setLoading(false);
     } catch (error: any) {
       setProgress(100);
