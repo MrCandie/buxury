@@ -2,7 +2,7 @@ import { Flex } from "@chakra-ui/react";
 import HistoryTitle from "./HistoryTitle";
 import HistoryList from "./HistoryList";
 
-export default function HistoryCenter() {
+export default function HistoryCenter({ list }: any) {
   return (
     <Flex
       h="90vh"
@@ -12,7 +12,7 @@ export default function HistoryCenter() {
     >
       <Flex w="100%" align="start" direction="column">
         <HistoryTitle />
-        <HistoryList />
+        <HistoryList list={list} />
       </Flex>
     </Flex>
   );

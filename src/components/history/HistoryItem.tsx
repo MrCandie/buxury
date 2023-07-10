@@ -1,6 +1,7 @@
 import { Flex, Text } from "@chakra-ui/react";
 
-export default function HistoryItem({ index }: any) {
+export default function HistoryItem({ index, item }: any) {
+  console.log(item);
   return (
     <Flex
       py="1rem"
@@ -16,7 +17,7 @@ export default function HistoryItem({ index }: any) {
         fontWeight={500}
         color="#000"
       >
-        gdhgjfy7y
+        {item?.order[0]?.product[0]?.id?.slice(0, 15)}
       </Text>
       <Text
         textAlign="center"
@@ -25,7 +26,7 @@ export default function HistoryItem({ index }: any) {
         fontWeight={500}
         color="#000"
       >
-        Naked wolfe
+        {item?.order[0]?.product[0]?.name?.slice(0, 25)}
       </Text>
       <Text
         textAlign="center"
@@ -34,7 +35,7 @@ export default function HistoryItem({ index }: any) {
         fontWeight={500}
         color="#000"
       >
-        4
+        {item?.order[0]?.quantity}
       </Text>
       <Text
         textAlign="center"
@@ -43,7 +44,7 @@ export default function HistoryItem({ index }: any) {
         fontWeight={500}
         color="#000"
       >
-        $120
+        ${item?.price?.toLocaleString()}
       </Text>
       <Text
         textAlign="center"
@@ -52,7 +53,7 @@ export default function HistoryItem({ index }: any) {
         fontWeight={500}
         color="#000"
       >
-        12/12/2022
+        {new Date(item?.createdAt).toLocaleDateString()}
       </Text>
     </Flex>
   );

@@ -67,18 +67,20 @@ export default function SuccessCenter() {
 
   return (
     <>
-      <Flex w="100%" align="center" h="100vh">
+      <Flex w="100%" wrap="wrap" align="center" h="100vh">
         <Flex
-          w="40%"
+          w={{ lg: "40%", md: "90%", base: "90%" }}
+          mx="auto"
           align="center"
           direction="column"
           gap="1rem"
           justify="center"
-          h="100vh"
+          h={{ lg: "100vh", md: "100%", base: "100%" }}
         >
           <Flex
             w="100px"
             h="100px"
+            mx="auto"
             bg="green.500"
             borderRadius="100%"
             boxShadow="2xl"
@@ -87,14 +89,15 @@ export default function SuccessCenter() {
           >
             <AiOutlineCheck color="white" size={20} />
           </Flex>
-          <Heading size="md" color="#333">
+          <Heading textAlign="center" size="md" color="#333">
             Purchase Successful
           </Heading>
         </Flex>
         <Flex
-          w="60%"
+          w={{ lg: "60%", md: "90%", base: "90%" }}
+          mx="auto"
           align="start"
-          h="90vh"
+          h={{ lg: "90vh", md: "100%", base: "100%" }}
           overflow="scroll"
           direction="column"
           gap="1rem"
