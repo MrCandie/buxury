@@ -398,3 +398,31 @@ export async function viewOrder(id) {
 
   return response.data;
 }
+
+export async function getStoreOrders(id) {
+  const token = getStoredItem("token");
+  const response = await axios.get(`${API_URL}/store/orders/${id}`, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}
+
+export async function updateOrder(id, data) {
+  const token = getStoredItem("token");
+  const response = await axios.patch(`${API_URL}/order/${id}`, data, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}

@@ -1,10 +1,21 @@
 import { Box, Flex, Heading } from "@chakra-ui/react";
 import { MdOutlinePayment } from "react-icons/md";
 import { BsTruck, BsFillHouseFill } from "react-icons/bs";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function TrackOrder() {
-  const [status, setStatus] = useState(2);
+export default function TrackOrder({ order }: any) {
+  const [status, setStatus] = useState(1);
+
+  useEffect(() => {
+    if (order?.status?.toLowerCase() === "pending") {
+      setStatus(1);
+    } else if (order?.status?.toLowerCase() === "shipped") {
+      setStatus(2);
+    } else {
+      setStatus(3);
+    }
+  }, [order]);
+
   return (
     <Flex
       w={{ lg: "80%", md: "100%", base: "100%" }}
@@ -58,7 +69,7 @@ export default function TrackOrder() {
           />
         </Flex>
         <Heading
-          size={{ lg: "sm", md: "sm", base: "xs" }}
+          fontSize={{ lg: "16px", md: "16px", base: "12px" }}
           textAlign="center"
           color={
             status === 1 || status === 2 || status === 3 ? "green" : "#333"
@@ -86,7 +97,7 @@ export default function TrackOrder() {
           />
         </Flex>
         <Heading
-          size={{ lg: "sm", md: "sm", base: "xs" }}
+          fontSize={{ lg: "16px", md: "16px", base: "12px" }}
           textAlign="center"
           color={status === 2 || status === 3 ? "green" : "#333"}
           h={{ lg: "100%", md: "100%", base: "50px" }}
@@ -107,7 +118,7 @@ export default function TrackOrder() {
           <BsFillHouseFill color={status === 3 ? "green" : "#333"} size={24} />
         </Flex>
         <Heading
-          size={{ lg: "sm", md: "sm", base: "xs" }}
+          fontSize={{ lg: "16px", md: "16px", base: "12px" }}
           textAlign="center"
           color={status === 3 ? "green" : "#333"}
           h={{ lg: "100%", md: "100%", base: "50px" }}

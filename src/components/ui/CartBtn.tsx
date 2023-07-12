@@ -16,20 +16,25 @@ export default function CartBtn({
           isLoading={loading}
           loadingText=""
           onClick={addHandler}
-          size="sm"
+          size={{ lg: "sm", md: "sm", base: "xs" }}
           color="#333"
           variant="solid"
         >
           <MdAdd />
         </Button>
-        <Button bg="transparent" size="sm" color="#333" variant="ghost">
+        <Button
+          bg="transparent"
+          size={{ lg: "sm", md: "sm", base: "xs" }}
+          color="#333"
+          variant="ghost"
+        >
           {quantity}
         </Button>
         <Button
           isLoading={loading1}
           loadingText=""
           onClick={() => removeHandler("reduce")}
-          size="sm"
+          size={{ lg: "sm", md: "sm", base: "xs" }}
           color="#333"
           variant="solid"
         >

@@ -11,6 +11,7 @@ import Products from "./Products";
 import { useState, useEffect } from "react";
 import { viewStore } from "util/http";
 import { useParams } from "react-router-dom";
+import Orders from "./Orders";
 
 export default function StoreDetailCenter() {
   const [store, setStore]: any = useState("");
@@ -49,6 +50,9 @@ export default function StoreDetailCenter() {
           <Tab fontSize={{ lg: 24, md: 20, base: 14 }} color="blue.500">
             Products
           </Tab>
+          <Tab fontSize={{ lg: 24, md: 20, base: 14 }} color="blue.500">
+            Orders
+          </Tab>
         </TabList>
 
         <TabPanels>
@@ -57,6 +61,9 @@ export default function StoreDetailCenter() {
           </TabPanel>
           <TabPanel>
             <Products products={products} id={store?.id} loading={loading} />
+          </TabPanel>
+          <TabPanel>
+            <Orders id={store?.id} />
           </TabPanel>
         </TabPanels>
       </Tabs>

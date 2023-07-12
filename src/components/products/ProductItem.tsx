@@ -12,6 +12,7 @@ import {
   Radio,
   Button,
   useToast,
+  Avatar,
 } from "@chakra-ui/react";
 import ImageComponent from "components/ui/Image";
 import {
@@ -175,10 +176,19 @@ export default function ProductItem({ item }: any) {
               </Text>
             </Box>
             <Flex align="center" w="100%" justify="space-between">
-              <Text fontWeight="medium" fontSize="sm">
-                ${calcDicountedPrice(item?.price, item?.discount)}
-              </Text>
-              <s>${item?.price}</s>
+              <Flex align="center" gap="1rem">
+                <Text fontWeight="medium" fontSize="sm">
+                  ${calcDicountedPrice(item?.price, item?.discount)}
+                </Text>
+                <s>${item?.price}</s>
+              </Flex>
+              <Avatar
+                cursor="pointer"
+                onClick={() => navigate(`/stores/${item?.store[0]?.slug}`)}
+                size="xs"
+                name={item?.store[0]?.name}
+                src={item?.store[0]?.image}
+              />
             </Flex>
           </Stack>
         </CardBody>

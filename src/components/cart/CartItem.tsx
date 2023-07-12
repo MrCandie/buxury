@@ -22,7 +22,7 @@ export default function CartItem({
   const product = item?.product[0];
 
   const toast = useToast();
- 
+
   const [progress, setProgress] = useState(0);
   const [cart, setCart]: any = useState("");
 
@@ -134,7 +134,7 @@ export default function CartItem({
           <Flex w="100%" align="center" justify="space-between">
             <Heading
               textTransform="uppercase"
-              size={{ lg: "md", md: "md", base: "xs" }}
+              fontSize={{ lg: "16px", md: "16px", base: "12px" }}
             >
               {product?.name}
             </Heading>
@@ -169,6 +169,7 @@ export default function CartItem({
               variant="ghost"
               isLoading={isLoading1}
               loadingText=""
+              size={{ lg: "sm", md: "sm", base: "xs" }}
               onClick={() => removeCartHandler("delete")}
             >
               Delete
