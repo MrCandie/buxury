@@ -5,6 +5,7 @@ import Review from "./Review";
 import { useEffect, useState } from "react";
 import { addReview, getOrder } from "util/http";
 import { getStoredItem } from "util/lib";
+import { useNavigate } from "react-router-dom";
 
 export default function SuccessCenter() {
   const [show, setShow] = useState(false);
@@ -13,6 +14,8 @@ export default function SuccessCenter() {
   const [rating, setRating] = useState(0);
   const [productId, setProductId] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const toast = useToast();
 
@@ -92,6 +95,14 @@ export default function SuccessCenter() {
           <Heading textAlign="center" size="md" color="#333">
             Purchase Successful
           </Heading>
+          <Button
+            onClick={() => navigate("/stores")}
+            bg="green.500"
+            color="#fff"
+            variant="solid"
+          >
+            Back to Store
+          </Button>
         </Flex>
         <Flex
           w={{ lg: "60%", md: "90%", base: "90%" }}

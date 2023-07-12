@@ -8,6 +8,7 @@ import { storeItem } from "util/lib";
 export default function OrderSummary({ loading, loading1 }: any) {
   const [price, setPrice] = useState(0);
   const [cart, setCart] = useState([]);
+  const [address, setAddress]: any = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const toast = useToast();
 
@@ -39,17 +40,37 @@ export default function OrderSummary({ loading, loading1 }: any) {
     const data = {
       order: cart,
       price: String(price) + ".00",
-      callback_url: "https://buxury.vercel.app/history",
+      address,
     };
-    console.log(data);
+
+    if (!address) {
+      toast({
+        title: "Enter delivery address",
+        description: "",
+        status: "warning",
+        duration: 3000,
+        position: "top-right",
+        isClosable: true,
+      });
+      return;
+    }
 
     if (cart.length === 0) {
+      toast({
+        title: "cart cannot be empty",
+        description: "",
+        status: "warning",
+        duration: 3000,
+        position: "top-right",
+        isClosable: true,
+      });
       return;
     }
 
     try {
       setIsLoading(true);
       const response = await createOrder(data);
+      setAddress("");
       storeItem(
         "transaction-reference",
         response.data.data.reference,
@@ -124,7 +145,7 @@ export default function OrderSummary({ loading, loading1 }: any) {
         </Heading>
       </Flex>
       <Divider />
-      <DeliveryAddress />
+      <DeliveryAddress setAddress={setAddress} />
       <Divider />
       <Button
         onClick={checkoutHandler}

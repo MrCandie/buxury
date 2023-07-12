@@ -1,7 +1,9 @@
 import { Flex, Text } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 export default function HistoryItem({ index, item }: any) {
-  console.log(item);
+  const navigate = useNavigate();
+
   return (
     <Flex
       py="1rem"
@@ -9,6 +11,7 @@ export default function HistoryItem({ index, item }: any) {
       bg={index % 2 === 0 ? "gray.100" : ""}
       w="100%"
       align="center"
+      onClick={() => navigate(`/history/${item.id}`)}
     >
       <Text
         textAlign="center"

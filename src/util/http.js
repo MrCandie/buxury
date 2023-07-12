@@ -384,3 +384,17 @@ export async function getUserOrders() {
 
   return response.data;
 }
+
+export async function viewOrder(id) {
+  const token = getStoredItem("token");
+  const response = await axios.get(`${API_URL}/order/${id}`, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}
