@@ -1,7 +1,5 @@
-import { Avatar, Box, Flex, Heading, Text } from "@chakra-ui/react";
-import ImageComponent from "components/ui/Image";
-import { useState } from "react";
-import { Rating } from "react-simple-star-rating";
+import { Avatar, Flex, Heading, Text } from "@chakra-ui/react";
+import Rate from "components/ui/Rating";
 
 export default function Comments({ reviews }: any) {
   return (
@@ -31,16 +29,12 @@ export default function Comments({ reviews }: any) {
             </Flex>
           </Flex>
           <Flex align="start" direction="column" gap="4px">
-            <Rating
-              style={{
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "row",
-              }}
-              readonly={true}
-              initialValue={+item?.rating}
-              size={18}
-            />
+            <Flex w="100%" align="center" gap="1rem">
+              <Rate rating={item?.rating} size={18} />
+              <Text fontSize={15} fontWeight="normal" color="#333">
+                ({item?.rating}) Rating
+              </Text>
+            </Flex>
             <Text
               textTransform="capitalize"
               fontSize={{ lg: "16px", md: "14px", base: "13px" }}

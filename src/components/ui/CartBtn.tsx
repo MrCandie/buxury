@@ -8,6 +8,7 @@ export default function CartBtn({
   loading,
   loading1,
   quantity,
+  disabled,
 }: any) {
   return (
     <Flex w="100%" align="start" justify="start">
@@ -19,6 +20,7 @@ export default function CartBtn({
           size={{ lg: "sm", md: "sm", base: "xs" }}
           color="#333"
           variant="solid"
+          isDisabled={disabled}
         >
           <MdAdd />
         </Button>
@@ -37,6 +39,7 @@ export default function CartBtn({
           size={{ lg: "sm", md: "sm", base: "xs" }}
           color="#333"
           variant="solid"
+          isDisabled={+quantity === 0}
         >
           <AiOutlineMinus />
         </Button>

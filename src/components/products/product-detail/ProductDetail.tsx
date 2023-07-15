@@ -41,7 +41,7 @@ export default function ProductDetail() {
       >
         <ProductBody loading={loading} product={product} />
         <Divider />
-        <DetailTab reviews={product.reviews} />
+        <DetailTab product={product} reviews={product.reviews} />
       </Flex>
     </Wrapper>
   );

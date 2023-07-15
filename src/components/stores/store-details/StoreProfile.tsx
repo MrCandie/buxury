@@ -5,18 +5,24 @@ import {
   Text,
   Box,
   Button,
-  Skeleton,
   SkeletonText,
   SkeletonCircle,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { AiFillEdit } from "react-icons/ai";
 import EditStore from "./EditStore";
 import ReportStore from "./ReportStore";
+import { AuthContext } from "util/context";
 
-export default function StoreProfile({ store, loading }: any) {
+export default function StoreProfile({
+  store,
+  loading,
+  products,
+  orders,
+}: any) {
   const [show, setShow] = useState(false);
   const [showReport, setShowReport] = useState(false);
+  const { user }: any = useContext(AuthContext);
 
   return (
     <>
@@ -44,17 +50,19 @@ export default function StoreProfile({ store, loading }: any) {
           position="relative"
           py="5rem"
         >
-          <Box
-            bg="white"
-            p="1rem"
-            borderRadius="100%"
-            position="absolute"
-            right="0"
-            top="0"
-            onClick={() => setShow(true)}
-          >
-            <AiFillEdit color="#333" cursor="pointer" fontSize={24} />
-          </Box>
+          {user?.id === store?.userId && (
+            <Box
+              bg="white"
+              p="1rem"
+              borderRadius="100%"
+              position="absolute"
+              right="0"
+              top="0"
+              onClick={() => setShow(true)}
+            >
+              <AiFillEdit color="#333" cursor="pointer" fontSize={24} />
+            </Box>
+          )}
           <Flex w="100%" wrap="wrap" align="center" justify="space-between">
             <Flex
               align="center"
@@ -147,7 +155,7 @@ export default function StoreProfile({ store, loading }: any) {
                   Total Listed Products
                 </Heading>
                 <Text fontSize="16px" fontWeight={500} color="#333">
-                  50
+                  {products?.length}
                 </Text>
               </Flex>
 
@@ -162,7 +170,7 @@ export default function StoreProfile({ store, loading }: any) {
                   Total Orders
                 </Heading>
                 <Text fontSize="16px" fontWeight={500} color="#333">
-                  20
+                  {orders?.length}
                 </Text>
               </Flex>
 
@@ -209,7 +217,9 @@ export default function StoreProfile({ store, loading }: any) {
         </Flex>
       )}
       {showReport && <ReportStore show={setShowReport} />}
-      {show && <EditStore store={store} show={setShow} />}
+      {show && user?.id === store?.userId && (
+        <EditStore store={store} show={setShow} />
+      )}
     </>
   );
 }

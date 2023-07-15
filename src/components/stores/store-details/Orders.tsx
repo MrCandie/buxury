@@ -1,24 +1,8 @@
-import { useEffect, useState } from "react";
 import { Flex } from "@chakra-ui/react";
 import HistoryList from "components/history/HistoryList";
 import HistoryTitle from "components/history/HistoryTitle";
-import { getStoreOrders } from "util/http";
 
-export default function Orders({ id }: any) {
-  const [list, setList] = useState([]);
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await getStoreOrders(id);
-        console.log(response);
-        setList(response.orders);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchData();
-  }, [id]);
-
+export default function Orders({ id, list }: any) {
   return (
     <Flex
       h="90vh"

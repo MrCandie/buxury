@@ -136,8 +136,14 @@ export default function ProductItem({ item }: any) {
       >
         <CardHeader>
           <Flex w="100%" align="center" justify="space-between">
-            <Badge color="#333">Available</Badge>
+            <Badge
+              colorScheme={`${item?.units > 0 ? "green" : "red"}`}
+              color="#333"
+            >
+              {item?.units > 0 ? "Available" : "Out Of Stock"}
+            </Badge>
             <Radio
+              isDisabled={item?.units === 0}
               onChange={(e: any) => {
                 if (e.target.checked) {
                   cartHandler();
@@ -203,6 +209,7 @@ export default function ProductItem({ item }: any) {
               leftIcon={<AiOutlineShoppingCart />}
               isLoading={loading}
               loadingText=""
+              isDisabled={+item?.units <= 0}
             >
               Add to cart
             </Button>

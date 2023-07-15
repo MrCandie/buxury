@@ -1,10 +1,21 @@
-import { Box, Button, Flex, Heading, Text, useToast } from "@chakra-ui/react";
+import {
+  Avatar,
+  Button,
+  Flex,
+  Heading,
+  Text,
+  useToast,
+} from "@chakra-ui/react";
 import CartBtn from "components/ui/CartBtn";
 import Loader from "components/ui/Loader";
+import Rate from "components/ui/Rating";
 import { useState, useEffect } from "react";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import {
+  AiOutlineHeart,
+  AiFillHeart,
+  AiOutlineShoppingCart,
+} from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import { Rating } from "react-simple-star-rating";
 import {
   addCart,
   addFavorite,
@@ -13,10 +24,10 @@ import {
   getCart,
   removeCart,
 } from "util/http";
+import { MdOutlineCall } from "react-icons/md";
 
 export default function ProductDescription({ product }: any) {
   const navigate = useNavigate();
-  const [rating, setRating] = useState(0);
   const toast = useToast();
   const [loading, setLoading] = useState(false);
   const [loading1, setLoading1] = useState(false);
@@ -35,7 +46,7 @@ export default function ProductDescription({ product }: any) {
       }
     }
     fetchData();
-  }, [isLoading]);
+  }, [isLoading, product]);
 
   useEffect(() => {
     async function fetchData() {
@@ -66,7 +77,7 @@ export default function ProductDescription({ product }: any) {
       }
       await "";
       toast({
-        title: `${product.name} added to your favorites`,
+        title: `Successful`,
         description: "",
         status: "success",
         duration: 3000,
@@ -158,10 +169,6 @@ export default function ProductDescription({ product }: any) {
     }
   }
 
-  const handleRating = (rate: number) => {
-    setRating(rate);
-  };
-
   return (
     <>
       <Loader progress={progress} setProgress={setProgress} />
@@ -191,8 +198,12 @@ export default function ProductDescription({ product }: any) {
             )}
           </Button>
         </Flex>
-        <Flex w="100%" align="center" direction="row">
-          <Rating transition={false} size={25} onClick={handleRating} />
+        <Flex w="100%" align="center" direction="row" gap="1rem">
+          <Rate rating={product?.ratingsAverage} />
+          <Text color="#333" fontSize="15px" fontWeight="normal">
+            {product?.reviews?.length} Review(s) ({product?.ratingsAverage}{" "}
+            rating)
+          </Text>
         </Flex>
 
         <Flex
@@ -211,22 +222,55 @@ export default function ProductDescription({ product }: any) {
             {product?.description}
           </Text>
         </Flex>
-        <CartBtn
-          removeHandler={removeCartHandler}
-          addHandler={addCartHandler}
-          loading={loading}
-          loading1={loading1}
-          quantity={cart?.quantity || 0}
-        />
-        <Button
-          onClick={() => navigate("/cart")}
+        <Flex w="100%" align="center" justify="space-between">
+          <CartBtn
+            removeHandler={removeCartHandler}
+            addHandler={addCartHandler}
+            loading={loading}
+            loading1={loading1}
+            quantity={cart?.quantity || 0}
+            disabled={product?.units === 0}
+          />
+          <Avatar
+            size="sm"
+            name={product?.store && product?.store[0]?.name}
+            src={product?.store && product?.store[0]?.image}
+            onClick={() => {
+              product?.store && navigate(`/stores/${product?.store[0]?.slug}`);
+            }}
+            cursor="pointer"
+          />
+        </Flex>
+        <Flex
           w="100%"
-          p="1rem"
-          colorScheme="green"
-          variant="solid"
+          gap="1rem"
+          align="center"
+          wrap="wrap"
+          justify="space-between"
         >
-          Proceed to cart
-        </Button>
+          <Button
+            onClick={() => navigate("/cart")}
+            w={{ lg: "45%", md: "47s%", base: "100%" }}
+            p="1rem"
+            colorScheme="green"
+            variant="solid"
+            leftIcon={<AiOutlineShoppingCart />}
+          >
+            Proceed to cart
+          </Button>
+          <Button
+            onClick={() => {
+              window.location.href = `tel:${product?.store[0]?.phone}`;
+            }}
+            w={{ lg: "45%", md: "47s%", base: "100%" }}
+            p="1rem"
+            colorScheme="blue"
+            variant="solid"
+            leftIcon={<MdOutlineCall />}
+          >
+            Call Vendor
+          </Button>
+        </Flex>
       </Flex>
     </>
   );

@@ -6,7 +6,7 @@ import ReturnPolicy from "./return-policy/ReturnPolicy";
 import Reviews from "./reviews/Reviews";
 import Chat from "./chat/Chat";
 
-export default function DetailTab({ reviews }: any) {
+export default function DetailTab({ reviews, product }: any) {
   return (
     <Tabs>
       <TabList>
@@ -32,7 +32,7 @@ export default function DetailTab({ reviews }: any) {
           <ReturnPolicy />
         </TabPanel>
         <TabPanel>
-          <Reviews reviews={reviews} />
+          <Reviews product={product} reviews={reviews} />
         </TabPanel>
         <TabPanel>
           <Chat />

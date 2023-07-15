@@ -20,6 +20,7 @@ export default function CartItem({
 }: any) {
   const navigate = useNavigate();
   const product = item?.product[0];
+  console.log(item);
 
   const toast = useToast();
 
@@ -47,6 +48,7 @@ export default function CartItem({
       setProgress(40);
       setProgress(60);
       await removeCart(item.id, data);
+      window.location.reload();
       if (type === "delete") {
         window.location.reload();
       }
@@ -94,6 +96,7 @@ export default function CartItem({
         position: "top-right",
         isClosable: true,
       });
+      window.location.reload();
       setProgress(80);
       setProgress(100);
       setIsLoading(false);
@@ -161,6 +164,7 @@ export default function CartItem({
               loading={isLoading}
               loading1={isLoading1}
               quantity={cart?.quantity}
+              disabled={product?.units <= 0}
             />
             <Button
               padding="0px"

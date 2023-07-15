@@ -8,16 +8,19 @@ import {
 } from "@chakra-ui/react";
 import StoreProfile from "./StoreProfile";
 import Products from "./Products";
-import { useState, useEffect } from "react";
-import { viewStore } from "util/http";
+import { useState, useEffect, useContext } from "react";
+import { getStoreOrders, viewStore } from "util/http";
 import { useParams } from "react-router-dom";
 import Orders from "./Orders";
+import { AuthContext } from "util/context";
 
 export default function StoreDetailCenter() {
   const [store, setStore]: any = useState("");
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [list, setList] = useState([]);
   const params = useParams();
+  const { user }: any = useContext(AuthContext);
 
   useEffect(() => {
     async function fetchData() {
@@ -33,7 +36,20 @@ export default function StoreDetailCenter() {
       }
     }
     fetchData();
-  }, []);
+  }, [params]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await getStoreOrders(store?.id);
+
+        setList(response.orders);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, [store.id]);
 
   return (
     <Flex
@@ -50,21 +66,35 @@ export default function StoreDetailCenter() {
           <Tab fontSize={{ lg: 24, md: 20, base: 14 }} color="blue.500">
             Products
           </Tab>
-          <Tab fontSize={{ lg: 24, md: 20, base: 14 }} color="blue.500">
-            Orders
-          </Tab>
+          {user?.id === store?.userId && (
+            <Tab fontSize={{ lg: 24, md: 20, base: 14 }} color="blue.500">
+              Orders
+            </Tab>
+          )}
         </TabList>
 
         <TabPanels>
           <TabPanel w="100%">
-            <StoreProfile loading={loading} store={store} />
+            <StoreProfile
+              orders={list}
+              products={products}
+              loading={loading}
+              store={store}
+            />
           </TabPanel>
           <TabPanel>
-            <Products products={products} id={store?.id} loading={loading} />
+            <Products
+              store={store}
+              products={products}
+              id={store?.id}
+              loading={loading}
+            />
           </TabPanel>
-          <TabPanel>
-            <Orders id={store?.id} />
-          </TabPanel>
+          {user?.id === store?.userId && (
+            <TabPanel>
+              <Orders list={list} id={store?.id} />
+            </TabPanel>
+          )}
         </TabPanels>
       </Tabs>
     </Flex>
