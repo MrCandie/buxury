@@ -8,6 +8,7 @@ export default function CartList({
   setIsLoading,
   isLoading1,
   setIsLoading1,
+  setStoreId
 }: any) {
   const dummyData = [1, 1, 1, 1, 1, 1];
   return (
@@ -56,6 +57,7 @@ export default function CartList({
                   setIsLoading1={setIsLoading1}
                   item={item}
                   key={i}
+                  setStoreId={setStoreId}
                 />
               ))}
             </>

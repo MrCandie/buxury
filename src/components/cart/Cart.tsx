@@ -10,6 +10,7 @@ export default function Cart() {
   const [loading, setLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoading1, setIsLoading1] = useState(false);
+  const [storeId, setStoreId] = useState("");
 
   useEffect(() => {
     async function fetchData() {
@@ -55,8 +56,13 @@ export default function Cart() {
             isLoading1={isLoading1}
             loading={loading}
             data={list}
+            setStoreId={setStoreId}
           />
-          <OrderSummary loading={isLoading} loading1={isLoading1} />
+          <OrderSummary
+            storeId={storeId}
+            loading={isLoading}
+            loading1={isLoading1}
+          />
         </Flex>
       </Flex>
     </Wrapper>

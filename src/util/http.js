@@ -426,3 +426,33 @@ export async function updateOrder(id, data) {
 
   return response.data;
 }
+
+////////////////
+// coupons
+export async function createCoupon(data) {
+  const token = getStoredItem("token");
+  const response = await axios.post(`${API_URL}/cart/coupon/create`, data, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}
+
+export async function applyCoupon(data) {
+  const token = getStoredItem("token");
+  const response = await axios.post(`${API_URL}/cart/coupon/apply`, data, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}

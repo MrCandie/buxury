@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { getUserStores } from "util/http";
 
 export default function ManageStore() {
-  const data = [1, 1, 1, 1];
   const { isOpen, onClose, onOpen } = useDisclosure();
   const [list, setList] = useState([]);
 
@@ -25,9 +24,9 @@ export default function ManageStore() {
   return (
     <>
       <Flex w="100%" align="start" direction="column">
-        <Flex w="100%" align="end" justify="end">
+        <Flex w="100%" align="center" justify="space-between">
           <Button
-            size={{ base: "sm", md: "sm" }}
+            size={{ lg: "md", base: "sm", md: "sm" }}
             onClick={onOpen}
             colorScheme="green"
             leftIcon={<AddIcon />}

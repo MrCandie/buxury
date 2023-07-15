@@ -17,10 +17,15 @@ export default function CartItem({
   setIsLoading,
   isLoading1,
   setIsLoading1,
+  setStoreId,
 }: any) {
   const navigate = useNavigate();
   const product = item?.product[0];
   console.log(item);
+
+  useEffect(() => {
+    setStoreId(product?.storeId);
+  }, [product, setStoreId]);
 
   const toast = useToast();
 
