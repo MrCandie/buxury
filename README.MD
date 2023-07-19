@@ -1,6 +1,13 @@
 
 # Overview
 This is an ecommerce platform for vendors and shoppers built with Refine & Chakra UI Framework.
+Vendors can sign up an account, then proceed to create a store in their profile and list products in the store so shoppers can patronize.
+
+# ONBOARDING FLOW FOR VENDORS
+SIGNUP --> VERIFY SIGNUP --> PROFILE --> CREATE STORE --> UPLOAD PRODUCTS
+
+# ONBOARDING FLOW FOR SHOPPERS
+SIGNUP --> VERIFY SIGNUP --> PRODUCTS --> START SHOPPING
 
 # PACKAGES USED
 ### [mrcandie-react-preview](https://www.npmjs.com/package/mrcandie-react-preview)
@@ -36,3 +43,6 @@ https://buxury.vercel.app/cart
 ## PROFILE PAGE
 User profile
 https://buxury.vercel.app/profile
+
+PAYMENT METHOD: paystack.com
+
