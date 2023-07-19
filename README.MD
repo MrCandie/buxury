@@ -1,48 +1,38 @@
-# tutorial
 
-<div align="center" style="margin: 30px;">
-    <a href="https://refine.dev">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/refine_logo.png"  align="center" />
-    </a>
-</div>
-<br/>
+# Overview
+This is an ecommerce platform for vendors and shoppers built with Refine & Chakra UI Framework.
 
-This [refine](https://github.com/pankod/refine) project was generated with [superplate](https://github.com/pankod/refine).
+# PACKAGES USED
+### [mrcandie-react-preview](https://www.npmjs.com/package/mrcandie-react-preview)
+A library i built to preview uploaded image in react
 
-## Getting Started
+### react-image-gallery
+A react library for the sliding gallery effect on the product detail page
 
-**refine** is a React-based framework for building data-intensive applications in no time ✨
+### react-top-loading-bar
+A loading component to manage loading states between API CALLS
 
-Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to admin panels, B2B applications and dashboards.
+### react-icons
+A react component library for icons.
 
-## Available Scripts
+# Pages
 
-### Running the development server.
+## PRODUCT PAGE
+List of all products available in store
+https://buxury.vercel.app/products
 
-```bash
-    npm run dev
-```
+## STORE PAGE
+List of all stores available on platform
+https://buxury.vercel.app/stores
 
-### Building for production.
+## HISTORY PAGE
+List of order histories
+https://buxury.vercel.app/history
 
-```bash
-    npm run build
-```
+## CART PAGE
+List of products in cart
+https://buxury.vercel.app/cart
 
-### Running the production server.
-
-```bash
-    npm run start
-```
-
-## Learn More
-
-To learn more about **refine**, please check out the [Documentation](https://refine.dev/docs)
-
-- **Chakra UI** [Docs](https://refine.dev/docs/)
-- **React Router** [Docs](https://refine.dev/docs/core/providers/router-provider/)
-- **REST Data Provider** [Docs](https://refine.dev/docs/core/providers/data-provider/#overview)
-
-## License
-
-MIT
+## PROFILE PAGE
+User profile
+https://buxury.vercel.app/profile
